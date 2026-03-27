@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="meta-title">كمال الباشا | الألمونتال والزجاج</title>
 <meta name="description" id="meta-desc" content="متخصصون في الألمونتال والزجاج الفاخر - تصميم 3D + سعر فوري">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230A0A0A'/%3E%3Crect x='10' y='10' width='44' height='44' rx='4' fill='none' stroke='%23C9A84C' stroke-width='3'/%3E%3Crect x='18' y='18' width='28' height='28' rx='2' fill='none' stroke='%23C9A84C' stroke-width='1.5' stroke-dasharray='3 2'/%3E%3Cline x1='32' y1='10' x2='32' y2='54' stroke='%23C9A84C' stroke-width='1.5' opacity='.5'/%3E%3Cline x1='10' y1='32' x2='54' y2='32' stroke='%23C9A84C' stroke-width='1.5' opacity='.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -21,6 +22,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Tajawal','Cairo',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;line-height:1.6}
+
+/* SCROLLBAR */
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--ink)}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
@@ -46,12 +49,6 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(28px);-webkit-ba
 .nav-brand{display:flex;flex-direction:column;line-height:1;cursor:pointer;gap:3px}
 .nb-main{font-size:22px;font-weight:900;letter-spacing:1px;transition:color .3s}
 .nb-sub{font-size:9px;letter-spacing:5px;font-weight:300;text-transform:uppercase;transition:color .3s}
-/* Brand year badge */
-.nb-year{display:inline-flex;align-items:center;gap:6px;margin-top:3px}
-.nb-year-badge{font-size:8px;letter-spacing:2px;padding:2px 8px;border-radius:2px;font-weight:700;background:linear-gradient(90deg,var(--gold),var(--gold-lt));color:#fff;text-transform:uppercase}
-.nb-year-since{font-size:8px;color:rgba(184,146,42,.6);letter-spacing:1.5px}
-nav.solid .nb-year-since{color:var(--silver)}
-nav:not(.solid) .nb-year-since{color:rgba(255,255,255,.28)}
 nav.solid .nb-main{color:var(--ink)} nav.solid .nb-sub{color:var(--silver)}
 nav:not(.solid) .nb-main{color:var(--white)} nav:not(.solid) .nb-sub{color:rgba(255,255,255,.35)}
 .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
@@ -82,12 +79,8 @@ nav.solid .hamburger span{background:var(--ink)}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;letter-spacing:7px;font-weight:400;color:var(--gold);margin-bottom:44px;text-transform:uppercase;animation:fadeUp .9s ease both .2s}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold));opacity:.5}
 .hero-eyebrow::before{transform:scaleX(-1)}
-.hero-name{font-size:clamp(60px,12vw,152px);font-weight:900;line-height:.92;letter-spacing:-5px;color:var(--white);animation:fadeUp .9s ease both .4s;margin-bottom:16px;position:relative;display:inline-block}
+.hero-name{font-size:clamp(60px,12vw,152px);font-weight:900;line-height:.92;letter-spacing:-5px;color:var(--white);animation:fadeUp .9s ease both .4s;margin-bottom:16px}
 .hero-name .gold{display:block;background:linear-gradient(120deg,var(--gold-pale) 0%,var(--gold-lt) 40%,var(--gold) 70%,#7A5010 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 40px rgba(212,168,64,.3))}
-/* Established year next to name */
-.hero-since{position:absolute;top:8px;left:-20px;transform:translateX(-100%);display:flex;flex-direction:column;align-items:center;gap:3px;opacity:.7}
-.hero-since-line{width:1px;height:30px;background:linear-gradient(to bottom,transparent,var(--gold))}
-.hero-since-year{font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:300;writing-mode:vertical-rl;padding:6px 0}
 .hero-tagline{font-size:clamp(12px,1.4vw,16px);font-weight:200;color:rgba(255,255,255,.35);letter-spacing:5px;margin-bottom:56px;animation:fadeUp .9s ease both .6s;text-transform:uppercase}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp .9s ease both .8s}
 .btn-p{background:var(--white);color:var(--ink);padding:16px 44px;border:none;border-radius:4px;font-family:inherit;font-size:14px;font-weight:800;letter-spacing:1.5px;cursor:pointer;transition:all .35s;position:relative;overflow:hidden}
@@ -112,13 +105,13 @@ nav.solid .hamburger span{background:var(--ink)}
 .srule.g{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
 
 /* TICKER */
-.ticker-wrap{background:var(--gold);overflow:hidden;padding:11px 0}
+.ticker-wrap{background:var(--gold);overflow:hidden;padding:11px 0;border-top:none}
 .ticker-track{display:flex;width:max-content;animation:ticker 22s linear infinite}
 .ticker-item{font-size:11px;letter-spacing:3px;font-weight:700;color:var(--ink);padding:0 28px;white-space:nowrap;text-transform:uppercase}
 .ticker-dot{opacity:.4;margin-left:8px}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── FEATURES (improved SVG icons) ── */
+/* FEATURES */
 #features{background:var(--white)}
 .fg{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line-md);margin-top:64px;overflow:hidden;border-radius:var(--r-md)}
 .fc{background:var(--white);padding:44px 36px;transition:all .4s;cursor:default;position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -128,38 +121,35 @@ nav.solid .hamburger span{background:var(--ink)}
 .fc:hover{background:var(--ink);transform:translateY(-2px);box-shadow:0 20px 60px rgba(0,0,0,.15);z-index:2}
 .fc:hover::before{transform:scaleX(1)}
 .fc:hover .fc-t,.fc:hover .fc-d{color:var(--white)}
-.fc:hover .fc-n{color:rgba(255,255,255,.04)}
-.fc:hover .fc-svg{color:var(--gold-lt)}
-.fc-svg{width:32px;height:32px;margin-bottom:18px;transition:color .3s;color:var(--ink-muted);display:block;flex-shrink:0}
+.fc:hover .fc-n{color:rgba(255,255,255,.05)}
+.fc:hover .fc-icon{color:var(--gold-lt)}
+.fc-icon{font-size:28px;margin-bottom:14px;transition:all .3s;display:block}
 .fc-n{font-size:68px;font-weight:900;color:rgba(10,10,10,.04);line-height:1;position:absolute;top:18px;left:24px;transition:color .3s;font-variant-numeric:tabular-nums}
 .fc-t{font-size:16px;font-weight:800;margin-bottom:10px;transition:color .3s;position:relative;z-index:1}
 .fc-d{font-size:13px;color:var(--silver);line-height:1.85;transition:color .3s;font-weight:300;position:relative;z-index:1}
 
-/* ── DESIGNER 3D ── */
+/* ==================== DESIGNER 3D ==================== */
 #designer{background:var(--paper-mid)}
 .dw{display:grid;grid-template-columns:1fr 420px;gap:24px;margin-top:60px;align-items:start}
-.cp{background:var(--ink-mid);border-radius:var(--r-lg);overflow:hidden;position:relative;height:580px;border:1px solid rgba(255,255,255,.08);box-shadow:0 32px 80px rgba(0,0,0,.35)}
-#three-canvas{display:block!important;width:100%!important;height:100%!important;position:absolute;top:0;left:0;touch-action:none;}
-.cv-hint{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.6);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);font-size:10px;padding:6px 14px;border-radius:30px;letter-spacing:1.5px;pointer-events:none;display:flex;align-items:center;gap:8px}
-.cv-hint::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:blink 1.8s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
-/* Live metrics overlay */
-.cv-ro{position:absolute;top:14px;left:14px;background:rgba(8,10,14,.82);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;font-size:11px;letter-spacing:.8px;color:rgba(255,255,255,.4);line-height:2.4;font-variant-numeric:tabular-nums;pointer-events:none;min-width:140px}
-.cv-ro .rv-row{display:flex;justify-content:space-between;gap:16px;align-items:center}
-.cv-ro .rv-label{color:rgba(255,255,255,.28);font-size:10px;letter-spacing:1px}
-.cv-ro .rv{color:var(--gold-lt);font-weight:800;font-size:13px}
-.cv-ro .rv-divider{height:1px;background:rgba(255,255,255,.06);margin:4px 0}
-/* Dimension labels on canvas */
-.cv-dim-badge{position:absolute;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);border:1px solid rgba(184,146,42,.3);color:var(--gold-pale);font-size:10px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1.5px;pointer-events:none}
-.cv-dim-h{bottom:55px;right:14px}
-.cv-dim-w{bottom:55px;left:50%;transform:translateX(-50%)}
-/* Tabs */
-.cv-tabs{position:absolute;bottom:0;left:0;right:0;display:flex;background:rgba(0,0,0,.82);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.07)}
-.cv-tab{flex:1;padding:13px 4px;text-align:center;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.3);cursor:pointer;font-family:inherit;background:none;border:none;border-left:1px solid rgba(255,255,255,.04);transition:all .25s;font-weight:400;position:relative}
+
+/* 3D Canvas Container */
+.cp{background:var(--ink-mid);border-radius:var(--r-lg);overflow:hidden;position:relative;height:540px;border:1px solid rgba(255,255,255,.06)}
+#three-canvas{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  position:absolute;
+  top:0;left:0;
+  touch-action:none;
+}
+.cv-hint{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.55);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.4);font-size:10px;padding:6px 13px;border-radius:4px;letter-spacing:1.5px;pointer-events:none}
+.cv-ro{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:13px 16px;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.45);line-height:2.1;font-variant-numeric:tabular-nums;pointer-events:none}
+.cv-ro .rv{color:var(--gold-lt);font-weight:700}
+.cv-tabs{position:absolute;bottom:0;left:0;right:0;display:flex;background:rgba(0,0,0,.78);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.07)}
+.cv-tab{flex:1;padding:13px 4px;text-align:center;font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.35);cursor:pointer;font-family:inherit;background:none;border:none;border-left:1px solid rgba(255,255,255,.04);transition:all .25s;font-weight:400}
 .cv-tab:first-child{border-left:none}
 .cv-tab:hover{color:rgba(255,255,255,.7);background:rgba(255,255,255,.04)}
-.cv-tab.active{color:var(--gold-lt);font-weight:700}
-.cv-tab.active::after{content:'';position:absolute;bottom:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--gold-lt),transparent)}
+.cv-tab.active{color:var(--gold-lt);background:rgba(184,146,42,.1);font-weight:700}
 .cv-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--ink-mid);flex-direction:column;gap:12px;z-index:10;transition:opacity .5s,visibility .5s}
 .cv-loading.hidden{opacity:0;visibility:hidden}
 .cv-loading-text{color:rgba(255,255,255,.35);font-size:11px;letter-spacing:3px}
@@ -175,13 +165,13 @@ nav.solid .hamburger span{background:var(--ink)}
 .df{display:flex;flex-direction:column;gap:5px}
 .dl{font-size:11px;color:var(--silver);letter-spacing:.5px}
 .diw{display:flex;align-items:center;border:1px solid var(--line-md);border-radius:5px;overflow:hidden;background:var(--paper);transition:border-color .2s,box-shadow .2s}
-.di{flex:1;padding:10px;border:none;background:transparent;font-family:inherit;font-size:15px;font-weight:700;color:var(--ink);outline:none;text-align:right;min-width:0}
+.di{flex:1;padding:10px 10px;border:none;background:transparent;font-family:inherit;font-size:15px;font-weight:700;color:var(--ink);outline:none;text-align:right;min-width:0}
 .du{padding:9px 10px;font-size:10px;color:var(--silver);border-right:1px solid var(--line);background:var(--paper-mid);white-space:nowrap;letter-spacing:1.5px}
 .diw:focus-within{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,146,42,.08)}
 .dvrow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .dvlb{font-size:12px;color:var(--silver);flex:1;letter-spacing:.3px}
 .dvc{display:flex;align-items:center;gap:8px}
-.dvb{width:28px;height:28px;border:1px solid var(--line-md);border-radius:5px;background:var(--white);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit;color:var(--ink);line-height:1;user-select:none}
+.dvb{width:28px;height:28px;border:1px solid var(--line-md);border-radius:5px;background:var(--white);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:inherit;color:var(--ink);font-weight:300;line-height:1;user-select:none}
 .dvb:hover{background:var(--ink);color:var(--white);border-color:var(--ink);transform:scale(1.08)}
 .dvv{font-size:16px;font-weight:800;min-width:24px;text-align:center;font-variant-numeric:tabular-nums}
 .arow{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -220,31 +210,22 @@ nav.solid .hamburger span{background:var(--ink)}
 .ab2{padding:13px;background:#075E54;color:var(--white);border:none;border-radius:6px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
 .ab2:hover{background:#128C7E;transform:translateY(-2px);box-shadow:0 8px 24px rgba(7,94,84,.35)}
 
-/* ── PRODUCTS (with image support) ── */
+/* PRODUCTS */
 #products{background:var(--white)}
 .frow{display:flex;gap:6px;flex-wrap:wrap;margin:28px 0 36px}
 .ft{padding:8px 20px;border:1px solid var(--line-md);border-radius:4px;background:transparent;font-family:inherit;font-size:11px;letter-spacing:1.5px;color:var(--silver);cursor:pointer;transition:all .25s}
 .ft.on,.ft:hover{background:var(--ink);color:var(--white);border-color:var(--ink)}
-.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
 .pcard{background:var(--white);cursor:pointer;transition:all .35s;display:flex;flex-direction:column;border-right:1px solid var(--line);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
 .pcard::before{content:'';position:absolute;inset:0;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform .4s cubic-bezier(.23,1,.32,1);z-index:0}
 .pcard:hover::before{transform:scaleY(1)}
 .pcard>*{position:relative;z-index:1}
-/* Image area */
-.pvis{height:200px;position:relative;overflow:hidden;background:var(--paper-mid);display:flex;align-items:center;justify-content:center;transition:background .4s}
+.pvis{height:170px;position:relative;overflow:hidden;background:var(--paper-mid);display:flex;align-items:center;justify-content:center;transition:background .4s}
 .pcard:hover .pvis{background:#111}
-.pvis-img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease,opacity .3s}
-.pcard:hover .pvis-img{transform:scale(1.06);opacity:.75}
-/* Fallback SVG when no image */
-.psvg-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-.pvis-img.loaded ~ .psvg-wrap{opacity:0!important}
-.psvg-wrap.show{opacity:1}
-.psvg{width:56px;height:56px;opacity:.18;transition:all .4s;color:var(--ink)}
+.psvg{width:60px;height:60px;opacity:.18;transition:all .4s;color:var(--ink)}
 .pcard:hover .psvg{opacity:.4;color:var(--white);transform:scale(1.1) rotate(-5deg)}
-.pbadge{position:absolute;top:11px;right:11px;background:var(--ink);color:var(--white);font-size:9px;letter-spacing:2.5px;padding:4px 12px;border-radius:2px;font-weight:700;transition:all .3s;z-index:2}
+.pbadge{position:absolute;top:11px;right:11px;background:var(--ink);color:var(--white);font-size:9px;letter-spacing:2.5px;padding:4px 12px;border-radius:2px;font-weight:700;transition:all .3s}
 .pcard:hover .pbadge{background:var(--gold)}
-/* Image missing indicator */
-.pimg-add{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);font-size:9px;padding:3px 9px;border-radius:3px;letter-spacing:1.5px;z-index:2}
 .pbody{padding:22px;flex:1;display:flex;flex-direction:column}
 .pname{font-size:15px;font-weight:800;margin-bottom:7px;transition:color .3s}
 .pcard:hover .pname{color:var(--white)}
@@ -255,7 +236,7 @@ nav.solid .hamburger span{background:var(--ink)}
 .pcard:hover .pprice{color:var(--gold-lt)}
 .punit{font-size:10px;color:var(--silver);letter-spacing:1.5px;transition:color .3s;margin-top:2px}
 .pcard:hover .punit{color:rgba(255,255,255,.28)}
-.porder{padding:8px 16px;background:transparent;border:1px solid var(--line-md);border-radius:4px;font-family:inherit;font-size:11px;color:var(--silver);cursor:pointer;transition:all .25px;letter-spacing:1px}
+.porder{padding:8px 16px;background:transparent;border:1px solid var(--line-md);border-radius:4px;font-family:inherit;font-size:11px;color:var(--silver);cursor:pointer;transition:all .25s;letter-spacing:1px}
 .pcard:hover .porder{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.5)}
 .porder:hover{background:var(--gold)!important;border-color:var(--gold)!important;color:var(--white)!important;transform:scale(1.03)}
 
@@ -273,32 +254,23 @@ nav.solid .hamburger span{background:var(--ink)}
 .prt{font-size:16px;font-weight:800;margin-bottom:10px}
 .prd{font-size:13px;color:rgba(255,255,255,.35);line-height:1.85;font-weight:300}
 
-/* ── TESTIMONIALS (accordion / dropdown style) ── */
+/* TESTIMONIALS */
 #testimonials{background:var(--white)}
-.tlist{margin-top:60px;max-width:860px}
-.titem{border-bottom:1px solid var(--line);overflow:hidden}
-.titem:first-child{border-top:1px solid var(--line)}
-.theader{padding:22px 0;display:flex;align-items:center;gap:16px;cursor:pointer;user-select:none;transition:all .2s}
-.theader:hover .t-name{color:var(--gold)}
-.tav{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--ink),var(--ink-soft));color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
-.t-meta{flex:1}
-.t-name{font-size:15px;font-weight:800;transition:color .2s}
-.t-loc{font-size:10px;color:var(--silver);letter-spacing:2px;margin-top:2px}
-.t-stars{display:flex;gap:2px;margin-top:4px}
-.tsvg{width:12px;height:12px;fill:var(--gold)}
-.t-chevron{width:28px;height:28px;border:1px solid var(--line-md);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .35s;color:var(--ink-muted)}
-.t-chevron svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .35s}
-.titem.open .t-chevron{background:var(--ink);border-color:var(--ink);color:var(--white)}
-.titem.open .t-chevron svg{transform:rotate(180deg)}
-.tbody{max-height:0;overflow:hidden;transition:max-height .45s ease,padding .3s}
-.titem.open .tbody{max-height:200px;padding-bottom:22px}
-.tt{font-size:14px;line-height:2;color:var(--ink-muted);font-weight:300;padding-right:58px;position:relative;font-style:italic}
-.tt::before{content:'"';position:absolute;right:0;top:-8px;font-size:52px;color:var(--paper-dark);font-family:Georgia,serif;line-height:1;font-style:normal}
+.tg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;margin-top:60px}
+.tc{background:var(--white);padding:36px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);transition:all .3s;position:relative}
+.tc::before{content:'"';position:absolute;top:20px;left:24px;font-size:72px;font-weight:900;color:var(--paper-dark);line-height:1;font-family:Georgia,serif}
+.tc:hover{background:var(--paper-mid);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.07)}
+.ts{display:flex;gap:3px;margin-bottom:18px;position:relative;z-index:1}
+.tsvg{width:13px;height:13px;fill:var(--gold)}
+.tt{font-size:14px;line-height:1.95;color:var(--ink-muted);margin-bottom:22px;font-weight:300;position:relative;z-index:1}
+.ta{display:flex;align-items:center;gap:13px;position:relative;z-index:1}
+.tav{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--ink),var(--ink-soft));color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.tn{font-size:14px;font-weight:800}.tl{font-size:10px;color:var(--silver);letter-spacing:1.5px;margin-top:2px}
 
 /* FAQ */
 #faq{background:var(--paper-mid)}
 .fl{margin-top:60px;max-width:820px}
-.fi{border-bottom:1px solid var(--line)}
+.fi{border-bottom:1px solid var(--line);transition:all .3s}
 .fi:first-child{border-top:1px solid var(--line)}
 .fq{padding:22px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:700;user-select:none;gap:20px;transition:color .2s}
 .fi:hover .fq,.fi.open .fq{color:var(--gold)}
@@ -330,19 +302,23 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
 .ft-links a{font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;letter-spacing:1px;transition:color .2s}
 .ft-links a:hover{color:var(--gold)}
 
+/* SCROLL TO TOP */
 #scrolltop{position:fixed;bottom:28px;right:28px;width:44px;height:44px;background:var(--ink);border:1px solid rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:100;opacity:0;transform:translateY(16px);transition:all .4s;box-shadow:0 8px 24px rgba(0,0,0,.3)}
 #scrolltop.vis{opacity:1;transform:translateY(0)}
 #scrolltop:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-3px)}
 #scrolltop svg{width:18px;height:18px;stroke:rgba(255,255,255,.6);fill:none;transition:stroke .2s}
 #scrolltop:hover svg{stroke:white}
 
+/* ANIM */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .rev{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
 .rev.in{opacity:1;transform:translateY(0)}
 
+/* TOAST */
 #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--ink);color:var(--white);border:1px solid rgba(255,255,255,.12);padding:12px 24px;border-radius:5px;font-size:12px;letter-spacing:1.5px;z-index:1000;transition:transform .45s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 16px 48px rgba(0,0,0,.4)}
 #toast.show{transform:translateX(-50%) translateY(0)}
 
+/* RESPONSIVE */
 @media(max-width:1100px){.dw{grid-template-columns:1fr 380px}}
 @media(max-width:960px){
   nav{padding:13px 20px}.nav-links{display:none!important}
@@ -352,7 +328,6 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
   .fg{grid-template-columns:1fr 1fr}
   .fc:nth-child(3n){border-right:1px solid var(--line)}
   .fc:nth-child(2n){border-right:none}
-  .hero-since{display:none}
 }
 @media(max-width:580px){
   .fg{grid-template-columns:1fr}
@@ -393,10 +368,6 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
   <div class="nav-brand" onclick="scrollTo({top:0,behavior:'smooth'})">
     <span class="nb-main" id="nb-main">كمال الباشا</span>
     <span class="nb-sub">KAMAL EL BASHA</span>
-    <div class="nb-year">
-      <span class="nb-year-badge">منذ 2009</span>
-      <span class="nb-year-since">· ١٥+ سنة خبرة</span>
-    </div>
   </div>
   <ul class="nav-links">
     <li><a href="#features">المميزات</a></li>
@@ -419,12 +390,6 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
   <div class="hero-inner">
     <div class="hero-eyebrow">الريادة في الألمونتال المصري</div>
     <h1 class="hero-name">
-      <!-- Established year vertical label -->
-      <div class="hero-since">
-        <div class="hero-since-line"></div>
-        <div class="hero-since-year">منذ ٢٠٠٩</div>
-        <div class="hero-since-line"></div>
-      </div>
       <span class="gold" id="h-name">كمال الباشا</span>
     </h1>
     <p class="hero-tagline" id="h-tag">للألمونتال والزجاج الفاخر</p>
@@ -471,21 +436,17 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
     <div class="cp rev">
       <div class="cv-loading" id="cv-loading">
         <div class="cv-spinner"></div>
-        <div class="cv-loading-text">جاري تحميل المحرك ثلاثي الأبعاد</div>
+        <div class="cv-loading-text">جاري التحميل</div>
       </div>
       <canvas id="three-canvas"></canvas>
       <div class="cv-hint">سحب للتدوير · سكرول للتكبير</div>
       <div class="cv-ro" id="cv-ro">
-        <div class="rv-row"><span class="rv-label">الارتفاع</span><span class="rv" id="cr-h">2.20</span></div>
-        <div class="rv-row"><span class="rv-label">العرض</span><span class="rv" id="cr-w">1.20</span></div>
-        <div class="rv-divider"></div>
-        <div class="rv-row"><span class="rv-label">المساحة</span><span class="rv" id="cr-a">2.64</span></div>
-        <div class="rv-row"><span class="rv-label">الجوازر</span><span class="rv" id="cr-d">0</span></div>
-        <div class="rv-row"><span class="rv-label">الزاوية</span><span class="rv" id="cr-ang">90°</span></div>
+        الارتفاع: <span class="rv" id="cr-h">2.20</span> م<br>
+        العرض: <span class="rv" id="cr-w">1.20</span> م<br>
+        المساحة: <span class="rv" id="cr-a">2.64</span> م²<br>
+        الجوازر: <span class="rv" id="cr-d">0</span><br>
+        الزاوية: <span class="rv" id="cr-ang">90°</span>
       </div>
-      <!-- Dimension badges on canvas -->
-      <div class="cv-dim-badge cv-dim-h" id="dim-h-badge">ارتفاع: 2.20م</div>
-      <div class="cv-dim-badge cv-dim-w" id="dim-w-badge">عرض: 1.20م</div>
       <div class="cv-tabs">
         <button class="cv-tab active" onclick="switchModel('door',this)">باب</button>
         <button class="cv-tab" onclick="switchModel('window',this)">شباك</button>
@@ -596,7 +557,7 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
           </button>
         </div>
       </div>
-    </div>
+    </div><!-- /ctrl -->
   </div>
 </div></section>
 
@@ -625,10 +586,10 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
   </div>
 </div></section>
 
-<!-- TESTIMONIALS (accordion) -->
+<!-- TESTIMONIALS -->
 <section id="testimonials"><div class="sw">
   <div class="rev"><span class="slabel">آراء العملاء</span><h2 class="stitle">بيقولوا عننا</h2><div class="srule"></div></div>
-  <div class="tlist rev" id="tg"></div>
+  <div class="tg rev" id="tg"></div>
 </div></section>
 
 <!-- FAQ -->
@@ -672,9 +633,10 @@ footer{background:var(--ink-mid);border-top:1px solid rgba(255,255,255,.05);padd
 </div>
 <div id="toast"></div>
 
+<!-- ==================== SCRIPTS ==================== -->
 <script>
 /* ===================== CONFIG ===================== */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx5uyYLT07SvspfnEnZOg7rPBpbEFvqTT-OeXMLe2Fl_nqpN7R8dWXRGxE46C-BvGAXOg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDWlhAPKeT7Js-7JHDy8mP9D48XgloRG1VMi6k9UUJ8PMCv2I0A6mVURmLDqLfR6y4Sw/exec';
 
 let SD = {}, PC = {};
 let currentModel = 'door';
@@ -683,116 +645,109 @@ let divs = { h: 0, v: 0 };
 let glassKey = 'glass_5mm', finishKey = 'color_powder_standard';
 let handleKey = 'handle_standard', lockKey = 'lock_standard';
 
+// THREE.JS globals
 let scene, camera, renderer, mg, animId;
 let dragging = false, lastMX = { x: 0, y: 0 }, pinchDist = null;
 let autoRotate = true;
 let threeReady = false;
 
-/* ── PROFESSIONAL SVG ICONS for Features ── */
-const FEAT_SVGS = {
-  cube: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M16 3L29 10.5v11L16 29 3 21.5v-11z"/><path d="M3 10.5L16 18l13-7.5"/><line x1="16" y1="18" x2="16" y2="29"/></svg>`,
-  lightning: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><polygon points="18,3 6,18 15,18 14,29 26,14 17,14"/></svg>`,
-  shield: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M16 3L4 8v9c0 6.5 5.2 12.3 12 14 6.8-1.7 12-7.5 12-14V8z"/><polyline points="11,16 14,19 21,12"/></svg>`,
-  chart: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="3" width="26" height="26" rx="2"/><polyline points="8,22 13,15 18,18 24,10"/><line x1="3" y1="26" x2="29" y2="26"/></svg>`,
-  palette: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M16 4C9.4 4 4 9.4 4 16c0 5 3.8 9.2 8.8 9.9 1.8.3 3.2-1.3 3.2-3.1 0-.8.6-1.4 1.4-1.4H20c4.4 0 8-3.6 8-8 0-5-4.9-9.4-12-9.4z"/><circle cx="9.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="13" cy="10" r="1.5" fill="currentColor"/><circle cx="19" cy="9.5" r="1.5" fill="currentColor"/><circle cx="23.5" cy="13" r="1.5" fill="currentColor"/></svg>`,
-  crosshair: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3"/><line x1="16" y1="2" x2="16" y2="7"/><line x1="16" y1="25" x2="16" y2="30"/><line x1="2" y1="16" x2="7" y2="16"/><line x1="25" y1="16" x2="30" y2="16"/></svg>`,
-  // default
-  default: `<svg class="fc-svg" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="24" height="24" rx="3"/><line x1="4" y1="12" x2="28" y2="12"/><line x1="14" y1="12" x2="14" y2="28"/></svg>`
-};
-
-/* Product SVG icons */
-const ICONS = {
-  doors: `<svg class="psvg" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2"><rect x="14" y="8" width="52" height="66" rx="2"/><rect x="22" y="18" width="36" height="22" rx="1" opacity=".5"/><rect x="22" y="44" width="36" height="20" rx="1" opacity=".5"/><circle cx="55" cy="42" r="3" fill="currentColor" opacity=".6"/><line x1="14" y1="74" x2="66" y2="74" stroke-width="3"/></svg>`,
-  windows: `<svg class="psvg" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2"><rect x="10" y="14" width="60" height="52" rx="2"/><line x1="40" y1="14" x2="40" y2="66" opacity=".5"/><line x1="10" y1="40" x2="70" y2="40" opacity=".5"/><rect x="14" y="18" width="22" height="18" rx="1" fill="currentColor" opacity=".1"/><line x1="52" y1="22" x2="52" y2="36" opacity=".4"/></svg>`,
-  facades: `<svg class="psvg" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="64" height="64" rx="2"/><line x1="8" y1="29" x2="72" y2="29" opacity=".45"/><line x1="8" y1="50" x2="72" y2="50" opacity=".45"/><line x1="29" y1="8" x2="29" y2="72" opacity=".45"/><line x1="51" y1="8" x2="51" y2="72" opacity=".45"/><rect x="12" y="12" width="13" height="13" fill="currentColor" opacity=".12"/></svg>`,
-  shower: `<svg class="psvg" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2"><rect x="10" y="16" width="38" height="54" rx="2"/><line x1="10" y1="36" x2="48" y2="36" opacity=".5"/><path d="M48 26 Q62 26 62 40 L62 70"/><line x1="8" y1="70" x2="70" y2="70" stroke-width="3"/><line x1="20" y1="23" x2="38" y2="23" opacity=".4"/></svg>`,
-  kitchens: `<svg class="psvg" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="12" width="64" height="38" rx="2"/><line x1="8" y1="32" x2="72" y2="32" opacity=".5"/><line x1="40" y1="12" x2="40" y2="50" opacity=".5"/><rect x="12" y="56" width="56" height="12" rx="2"/><circle cx="25" cy="35" r="3" fill="currentColor" opacity=".4"/><circle cx="55" cy="35" r="3" fill="currentColor" opacity=".4"/></svg>`
-};
-
 /* ===================== DEFAULT DATA ===================== */
 const DEF = {
   settings: {
-    hero_title:'كمال الباشا',hero_subtitle:'للألمونتال والزجاج الفاخر',
-    phone:'01000000000',whatsapp:'201000000000',
-    stat_projects:'+500',stat_years:'15+',stat_clients:'98%',stat_guarantee:'10 سنوات',
-    contact_name:'كمال الباشا',contact_tagline:'متخصصون في الألمونتال والزجاج منذ 2009',
-    footer_text:'جميع الحقوق محفوظة © 2025 — كمال الباشا',
-    features_title:'ما يميزنا',products_title:'كل ما تحتاجه'
+    hero_title: 'كمال الباشا', hero_subtitle: 'للألمونتال والزجاج الفاخر',
+    phone: '01000000000', whatsapp: '201000000000',
+    stat_projects: '+500', stat_years: '15+', stat_clients: '98%', stat_guarantee: '10 سنوات',
+    contact_name: 'كمال الباشا', contact_tagline: 'متخصصون في الألمونتال والزجاج منذ 2009',
+    footer_text: 'جميع الحقوق محفوظة © 2025 — كمال الباشا',
+    features_title: 'ما يميزنا', products_title: 'كل ما تحتاجه'
   },
-  prices:{
-    price_door_base:800,price_window_base:600,price_facade_base:1200,
-    price_shower_base:900,price_kitchen_base:700,
-    glass_5mm:0,glass_6mm:80,glass_8mm_tempered:150,glass_10mm_tempered:250,
-    glass_double:400,glass_frosted:100,glass_smart:1200,
-    color_powder_standard:0,color_powder_premium:150,color_wood_effect:200,color_anodized:300,
-    divider_horizontal:120,divider_vertical:120,
-    handle_standard:80,handle_premium:200,lock_standard:150,lock_digital:800,
-    labor_pct:20
+  prices: {
+    price_door_base: 800, price_window_base: 600, price_facade_base: 1200,
+    price_shower_base: 900, price_kitchen_base: 700,
+    glass_5mm: 0, glass_6mm: 80, glass_8mm_tempered: 150, glass_10mm_tempered: 250,
+    glass_double: 400, glass_frosted: 100, glass_smart: 1200,
+    color_powder_standard: 0, color_powder_premium: 150, color_wood_effect: 200, color_anodized: 300,
+    divider_horizontal: 120, divider_vertical: 120,
+    handle_standard: 80, handle_premium: 200, lock_standard: 150, lock_digital: 800,
+    labor_pct: 20
   },
-  products:[
-    {id:1,name:'باب ألمونتال حديث',cat:'doors',desc:'إطار مقاوم للصدأ مع زجاج تيمبرد',price:'1,200',unit:'ج/م²',badge:'الأكثر طلباً',image_url:''},
-    {id:2,name:'باب فليب بالكونة',cat:'doors',desc:'يفتح للأعلى بمفصلات هيدروليك',price:'1,600',unit:'ج/م²',badge:'مميز',image_url:''},
-    {id:3,name:'شباك انزلاق',cat:'windows',desc:'بكرات ستانلس ستيل صامتة',price:'800',unit:'ج/م²',badge:'شائع',image_url:''},
-    {id:4,name:'شباك فرنسي',cat:'windows',desc:'تصميم أوروبي مع ذراع فتح علوي',price:'1,000',unit:'ج/م²',badge:'كلاسيك',image_url:''},
-    {id:5,name:'واجهة زجاجية',cat:'facades',desc:'كيرتن وول بألمونتال هيكلي',price:'2,500',unit:'ج/م²',badge:'مشاريع',image_url:''},
-    {id:6,name:'واجهة محل تجاري',cat:'facades',desc:'مع لوحة إعلانية مدمجة',price:'3,000',unit:'ج/م²',badge:'تجاري',image_url:''},
-    {id:7,name:'كبينة شاور مستطيلة',cat:'shower',desc:'زجاج 10مم تيمبرد + فريم فضي',price:'3,500',unit:'للقطعة',badge:'الأكثر مبيعاً',image_url:''},
-    {id:8,name:'كبينة شاور زاوية',cat:'shower',desc:'منزلق ناعم وهادئ بالكامل',price:'4,200',unit:'للقطعة',badge:'فاخر',image_url:''},
-    {id:9,name:'باب مطبخ ألمونتال',cat:'kitchens',desc:'مقاوم للرطوبة والحرارة',price:'900',unit:'ج/م²',badge:'عملي',image_url:''},
-    {id:10,name:'كابينة مطبخ زجاجية',cat:'kitchens',desc:'علوي زجاج + سفلي ألمونتال',price:'1,100',unit:'ج/م²',badge:'عصري',image_url:''}
+  products: [
+    { id: 1, name: 'باب ألمونتال حديث', cat: 'doors', desc: 'إطار مقاوم للصدأ مع زجاج تيمبرد', price: '1,200', unit: 'ج/م²', badge: 'الأكثر طلباً', color: '#1A1D21' },
+    { id: 2, name: 'باب فليب بالكونة', cat: 'doors', desc: 'يفتح للأعلى بمفصلات هيدروليك', price: '1,600', unit: 'ج/م²', badge: 'مميز', color: '#1A1D21' },
+    { id: 3, name: 'شباك انزلاق', cat: 'windows', desc: 'بكرات ستانلس ستيل صامتة', price: '800', unit: 'ج/م²', badge: 'شائع', color: '#252830' },
+    { id: 4, name: 'شباك فرنسي', cat: 'windows', desc: 'تصميم أوروبي مع ذراع فتح علوي', price: '1,000', unit: 'ج/م²', badge: 'كلاسيك', color: '#252830' },
+    { id: 5, name: 'واجهة زجاجية', cat: 'facades', desc: 'كيرتن وول بألمونتال هيكلي', price: '2,500', unit: 'ج/م²', badge: 'مشاريع', color: '#111418' },
+    { id: 6, name: 'واجهة محل تجاري', cat: 'facades', desc: 'مع لوحة إعلانية مدمجة', price: '3,000', unit: 'ج/م²', badge: 'تجاري', color: '#111418' },
+    { id: 7, name: 'كبينة شاور مستطيلة', cat: 'shower', desc: 'زجاج 10مم تيمبرد + فريم فضي', price: '3,500', unit: 'للقطعة', badge: 'الأكثر مبيعاً', color: '#1E2530' },
+    { id: 8, name: 'كبينة شاور زاوية', cat: 'shower', desc: 'منزلق ناعم وهادئ بالكامل', price: '4,200', unit: 'للقطعة', badge: 'فاخر', color: '#1E2530' },
+    { id: 9, name: 'باب مطبخ ألمونتال', cat: 'kitchens', desc: 'مقاوم للرطوبة والحرارة', price: '900', unit: 'ج/م²', badge: 'عملي', color: '#1A1D21' },
+    { id: 10, name: 'كابينة مطبخ زجاجية', cat: 'kitchens', desc: 'علوي زجاج + سفلي ألمونتال', price: '1,100', unit: 'ج/م²', badge: 'عصري', color: '#1A1D21' }
   ],
-  features:[
-    {title:'مصمم 3D فوري',desc:'شوف تصميمك قبل التنفيذ. أبعاد حقيقية وسعر فوري مع كل تغيير',svg_key:'cube'},
-    {title:'تركيب 48 ساعة',desc:'فريق محترف يصل إليك في أسرع وقت. شغل نظيف بدون فوضى',svg_key:'lightning'},
-    {title:'ضمان 10 سنوات',desc:'ضمان شامل على المواد والتشطيب. أي مشكلة — إحنا موجودين',svg_key:'shield'},
-    {title:'أسعار شفافة',desc:'احسب سعرك من المصمم مباشرة. مفيش مفاجآت في الآخر',svg_key:'chart'},
-    {title:'+50 لون وخامة',desc:'من الكلاسيكي للخامات الإيطالية. اختر ما يناسب ذوقك',svg_key:'palette'},
-    {title:'دقة ليزر 0.1مم',desc:'جهاز قياس ليزر متطور يضمن دقة مطلقة في كل قياس',svg_key:'crosshair'}
+  features: [
+    { title: 'مصمم 3D فوري', desc: 'شوف تصميمك قبل التنفيذ. أبعاد حقيقية وسعر فوري مع كل تغيير', icon: '🏗️' },
+    { title: 'تركيب 48 ساعة', desc: 'فريق محترف يصل إليك في أسرع وقت. شغل نظيف بدون فوضى', icon: '⚡' },
+    { title: 'ضمان 10 سنوات', desc: 'ضمان شامل على المواد والتشطيب. أي مشكلة — إحنا موجودين', icon: '🛡️' },
+    { title: 'أسعار شفافة', desc: 'احسب سعرك من المصمم مباشرة. مفيش مفاجآت في الآخر', icon: '💎' },
+    { title: '+50 لون وخامة', desc: 'من الكلاسيكي للخامات الإيطالية. اختر ما يناسب ذوقك', icon: '🎨' },
+    { title: 'دقة ليزر 0.1مم', desc: 'جهاز قياس ليزر متطور يضمن دقة مطلقة في كل قياس', icon: '🔬' }
   ],
-  testimonials:[
-    {name:'أحمد السيد',loc:'مدينة نصر',stars:5,text:'شغل رائع وتسليم في الوقت. الواجهة الزجاجية فارقت فرق كبير في شكل المحل.'},
-    {name:'منى خالد',loc:'المعادي',stars:5,text:'كمال الباشا ناس تقدر تتعامل معاهم بثقة. الأسعار معقولة والجودة عالية جداً.'},
-    {name:'محمد فتحي',loc:'التجمع الخامس',stars:5,text:'عملت معاهم 3 شقق متتالي. التسليم سريع والتركيب محترف جداً.'},
-    {name:'سارة أحمد',loc:'الزمالك',stars:5,text:'كبينة الشاور جميلة جداً والجودة ممتازة. ينصح بيهم بشدة.'},
-    {name:'خالد عمر',loc:'الشيخ زايد',stars:5,text:'سعر مناسب وجودة عالية. الفريق محترف والتسليم في المعاد.'}
+  testimonials: [
+    { name: 'أحمد السيد', loc: 'مدينة نصر', stars: 5, text: 'شغل رائع وتسليم في الوقت. الواجهة الزجاجية فارقت فرق كبير في شكل المحل.' },
+    { name: 'منى خالد', loc: 'المعادي', stars: 5, text: 'كمال الباشا ناس تقدر تتعامل معاهم بثقة. الأسعار معقولة والجودة عالية جداً.' },
+    { name: 'محمد فتحي', loc: 'التجمع الخامس', stars: 5, text: 'عملت معاهم 3 شقق متتالي. التسليم سريع والتركيب محترف جداً.' },
+    { name: 'سارة أحمد', loc: 'الزمالك', stars: 5, text: 'كبينة الشاور جميلة جداً والجودة ممتازة. ينصح بيهم بشدة.' },
+    { name: 'خالد عمر', loc: 'الشيخ زايد', stars: 5, text: 'سعر مناسب وجودة عالية. الفريق محترف والتسليم في المعاد.' }
   ],
-  faq:[
-    {q:'إيه الفرق بين الألمونتال المحلي والمستورد؟',a:'المحلي جيد للاستخدام العادي. الإيطالي يتميز بمقاومة أعلى للأكسدة وثبات أفضل للألوان.'},
-    {q:'هل التركيب متضمن في السعر؟',a:'نعم، نحسب 20% من تكلفة المواد كأجر تركيب شامل.'},
-    {q:'كام المدة من الطلب للتسليم؟',a:'طلبات عادية: 3-5 أيام. واجهات كبيرة: 7-14 يوم. التركيب خلال 48 ساعة.'},
-    {q:'ما هو نوع الزجاج الأنسب للشباك؟',a:'تيمبرد 6-8مم. للواجهات ننصح بالمضاعف لعزل أفضل.'},
-    {q:'هل الضمان يشمل الزجاج؟',a:'الألمونتال مضمون 10 سنوات. الزجاج 3 سنوات ضد عيوب التصنيع.'},
-    {q:'هل ممكن تصاميم غير معيارية؟',a:'طبعاً! كل شغلنا custom. المصمم 3D يعرض تصميمك قبل البدء.'},
-    {q:'إيه طرق الدفع المتاحة؟',a:'50% مقدم عند بدء التصنيع، والباقي بعد التركيب والرضا التام.'}
+  faq: [
+    { q: 'إيه الفرق بين الألمونتال المحلي والمستورد؟', a: 'المحلي جيد للاستخدام العادي. الإيطالي يتميز بمقاومة أعلى للأكسدة وثبات أفضل للألوان.' },
+    { q: 'هل التركيب متضمن في السعر؟', a: 'نعم، نحسب 20% من تكلفة المواد كأجر تركيب شامل.' },
+    { q: 'كام المدة من الطلب للتسليم؟', a: 'طلبات عادية: 3-5 أيام. واجهات كبيرة: 7-14 يوم. التركيب خلال 48 ساعة.' },
+    { q: 'ما هو نوع الزجاج الأنسب للشباك؟', a: 'تيمبرد 6-8مم. للواجهات ننصح بالمضاعف لعزل أفضل.' },
+    { q: 'هل الضمان يشمل الزجاج؟', a: 'الألمونتال مضمون 10 سنوات. الزجاج 3 سنوات ضد عيوب التصنيع.' },
+    { q: 'هل ممكن تصاميم غير معيارية؟', a: 'طبعاً! كل شغلنا custom. المصمم 3D يعرض تصميمك قبل البدء.' },
+    { q: 'إيه طرق الدفع المتاحة؟', a: '50% مقدم عند بدء التصنيع، والباقي بعد التركيب والرضا التام.' }
   ]
 };
 
 /* ===================== DATA LOADING ===================== */
 async function loadData() {
-  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes('YOUR_APPS_SCRIPT')) {
-    applyData(DEF); return;
+  if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    applyData(DEF);
+    return;
   }
   try {
     const res = await fetch(APPS_SCRIPT_URL + '?action=all', { mode: 'cors' });
     const json = await res.json();
-    if (json.ok) { applyData(json.data); toast('✓ تم تحميل البيانات من الشيتات'); }
-    else applyData(DEF);
-  } catch (e) { applyData(DEF); }
+    if (json.ok) {
+      applyData(json.data);
+      toast('✓ تم تحميل البيانات من الشيتات');
+    } else {
+      applyData(DEF);
+    }
+  } catch (e) {
+    applyData(DEF);
+  }
 }
 
 function applyData(d) {
   const s = d.settings || DEF.settings;
   SD = s; PC = d.prices || DEF.prices;
-  const st = (id, v) => { const e = document.getElementById(id); if (e && v!=null) e.textContent = v; };
+  const st = (id, v) => { const e = document.getElementById(id); if (e && v != null) e.textContent = v; };
+
   st('h-name', s.hero_title); st('h-tag', s.hero_subtitle); st('nb-main', s.hero_title);
   st('cnn', s.contact_name || s.hero_title); st('csub', s.contact_tagline);
   st('hs1', s.stat_projects); st('hs2', s.stat_years);
   st('hs3', s.stat_clients); st('hs4', s.stat_guarantee);
   st('ftc', s.footer_text); st('ft-tit', s.features_title); st('pt', s.products_title);
+
   if (s.meta_title) document.title = s.meta_title;
+  const md = document.getElementById('meta-desc');
+  if (md && s.meta_description) md.setAttribute('content', s.meta_description);
+
   const ph = s.phone || '01000000000';
   const pe = document.getElementById('cph');
   if (pe) { pe.href = 'tel:' + ph; pe.lastChild.textContent = ' ' + ph; }
+
   renderFeats(d.features || DEF.features);
   renderProds(d.products || DEF.products, 'all');
   renderTests(d.testimonials || DEF.testimonials);
@@ -800,38 +755,32 @@ function applyData(d) {
   updatePrice();
 }
 
-/* ── FEATURES render with SVG icons ── */
+/* ===================== RENDER FUNCTIONS ===================== */
 function renderFeats(feats) {
-  document.getElementById('feat-grid').innerHTML = feats.map((x, i) => {
-    const svgKey = x.svg_key || x.icon || 'default';
-    const svgHtml = FEAT_SVGS[svgKey] || FEAT_SVGS.default;
-    return `<div class="fc">
-      <div class="fc-n">${String(i+1).padStart(2,'0')}</div>
-      ${svgHtml}
+  document.getElementById('feat-grid').innerHTML = feats.map((x, i) => `
+    <div class="fc">
+      <div class="fc-n">${String(i + 1).padStart(2, '0')}</div>
+      <div class="fc-icon">${x.icon || ''}</div>
       <div class="fc-t">${x.title}</div>
       <div class="fc-d">${x.desc}</div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
-/* ── PRODUCTS render (with image_url support) ── */
+const ICONS = {
+  doors: `<svg class="psvg" viewBox="0 0 80 80" fill="none"><rect x="14" y="8" width="52" height="66" rx="2" stroke="currentColor" stroke-width="2.5"/><rect x="22" y="18" width="36" height="22" rx="1" stroke="currentColor" stroke-width="1.5" opacity=".5"/><rect x="22" y="44" width="36" height="20" rx="1" stroke="currentColor" stroke-width="1.5" opacity=".5"/><circle cx="55" cy="42" r="3" fill="currentColor" opacity=".6"/></svg>`,
+  windows: `<svg class="psvg" viewBox="0 0 80 80" fill="none"><rect x="10" y="14" width="60" height="52" rx="2" stroke="currentColor" stroke-width="2.5"/><line x1="40" y1="14" x2="40" y2="66" stroke="currentColor" stroke-width="1.5" opacity=".5"/><line x1="10" y1="40" x2="70" y2="40" stroke="currentColor" stroke-width="1.5" opacity=".5"/><rect x="14" y="18" width="22" height="18" rx="1" fill="currentColor" opacity=".12"/></svg>`,
+  facades: `<svg class="psvg" viewBox="0 0 80 80" fill="none"><rect x="8" y="8" width="64" height="64" rx="2" stroke="currentColor" stroke-width="2.5"/><line x1="8" y1="29" x2="72" y2="29" stroke="currentColor" stroke-width="1.5" opacity=".45"/><line x1="8" y1="50" x2="72" y2="50" stroke="currentColor" stroke-width="1.5" opacity=".45"/><line x1="29" y1="8" x2="29" y2="72" stroke="currentColor" stroke-width="1.5" opacity=".45"/><line x1="51" y1="8" x2="51" y2="72" stroke="currentColor" stroke-width="1.5" opacity=".45"/></svg>`,
+  shower: `<svg class="psvg" viewBox="0 0 80 80" fill="none"><rect x="10" y="16" width="38" height="54" rx="2" stroke="currentColor" stroke-width="2.5"/><line x1="10" y1="36" x2="48" y2="36" stroke="currentColor" stroke-width="1.5" opacity=".5"/><path d="M48 26 Q62 26 62 40 L62 70" stroke="currentColor" stroke-width="2.5"/><line x1="8" y1="70" x2="70" y2="70" stroke="currentColor" stroke-width="3"/></svg>`,
+  kitchens: `<svg class="psvg" viewBox="0 0 80 80" fill="none"><rect x="8" y="12" width="64" height="38" rx="2" stroke="currentColor" stroke-width="2.5"/><line x1="8" y1="32" x2="72" y2="32" stroke="currentColor" stroke-width="1.5" opacity=".5"/><line x1="40" y1="12" x2="40" y2="50" stroke="currentColor" stroke-width="1.5" opacity=".5"/><rect x="12" y="56" width="56" height="12" rx="2" stroke="currentColor" stroke-width="2"/></svg>`
+};
+
 let allP = DEF.products;
 function renderProds(p, cat) {
   allP = p;
   const list = cat === 'all' ? p : p.filter(x => x.cat === cat);
-  document.getElementById('pg').innerHTML = list.map(x => {
-    const hasImg = x.image_url && x.image_url.trim() !== '';
-    const imgHtml = hasImg
-      ? `<img class="pvis-img" src="${x.image_url}" alt="${x.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.classList.add('show')">`
-      : '';
-    const svgWrapClass = hasImg ? 'psvg-wrap' : 'psvg-wrap show';
-    return `<div class="pcard" onclick="selProd(${x.id})">
-      <div class="pvis">
-        ${imgHtml}
-        <div class="${svgWrapClass}">${ICONS[x.cat]||ICONS.doors}</div>
-        <div class="pbadge">${x.badge}</div>
-        ${!hasImg ? `<div class="pimg-add">+ أضف صورة في الشيت</div>` : ''}
-      </div>
+  document.getElementById('pg').innerHTML = list.map(x => `
+    <div class="pcard" onclick="selProd(${x.id})">
+      <div class="pvis">${ICONS[x.cat] || ICONS.doors}<div class="pbadge">${x.badge}</div></div>
       <div class="pbody">
         <div class="pname">${x.name}</div>
         <div class="pdesc">${x.desc}</div>
@@ -840,8 +789,7 @@ function renderProds(p, cat) {
           <button class="porder" onclick="event.stopPropagation();quickOrd('${x.name}')">اطلب</button>
         </div>
       </div>
-    </div>`;
-  }).join('');
+    </div>`).join('');
 }
 
 function filterP(cat, btn) {
@@ -853,10 +801,13 @@ function filterP(cat, btn) {
 function selProd(id) {
   const p = allP.find(x => x.id === id);
   if (!p) return;
-  const map = { doors:'door', windows:'window', facades:'facade', shower:'shower', kitchens:'door' };
+  const map = { doors: 'door', windows: 'window', facades: 'facade', shower: 'shower', kitchens: 'door' };
   const m = map[p.cat] || 'door';
-  document.getElementById('designer').scrollIntoView({ behavior:'smooth' });
-  setTimeout(() => { switchModel(m); switchTabBtn(m); }, 400);
+  document.getElementById('designer').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    switchModel(m);
+    switchTabBtn(m);
+  }, 400);
   toast('✓ تصميم: ' + p.name);
 }
 
@@ -865,32 +816,17 @@ function quickOrd(n) {
   window.open(`https://wa.me/${ph}?text=${encodeURIComponent('مرحباً، أريد الاستفسار عن: ' + n)}`, '_blank');
 }
 
-/* ── TESTIMONIALS (accordion) ── */
 function renderTests(list) {
   const star = `<svg class="tsvg" viewBox="0 0 20 20"><path d="M10 1l2.39 7.26H20l-6.18 4.49 2.36 7.26L10 15.51l-6.18 4.5 2.36-7.26L0 8.26h7.61z"/></svg>`;
-  const chevron = `<svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>`;
-  document.getElementById('tg').innerHTML = list.map((t, i) => `
-    <div class="titem" id="ti${i}">
-      <div class="theader" onclick="togTest(${i})">
+  document.getElementById('tg').innerHTML = list.map(t => `
+    <div class="tc">
+      <div class="ts">${star.repeat(Math.min(5, t.stars || 5))}</div>
+      <div class="tt">${t.text}</div>
+      <div class="ta">
         <div class="tav">${t.name.charAt(0)}</div>
-        <div class="t-meta">
-          <div class="t-name">${t.name}</div>
-          <div class="t-loc">${t.loc}</div>
-          <div class="t-stars">${star.repeat(Math.min(5, t.stars||5))}</div>
-        </div>
-        <div class="t-chevron">${chevron}</div>
-      </div>
-      <div class="tbody">
-        <div class="tt">${t.text}</div>
+        <div><div class="tn">${t.name}</div><div class="tl">${t.loc}</div></div>
       </div>
     </div>`).join('');
-}
-
-function togTest(i) {
-  const el = document.getElementById('ti' + i);
-  const wasOpen = el.classList.contains('open');
-  document.querySelectorAll('.titem').forEach(x => x.classList.remove('open'));
-  if (!wasOpen) el.classList.add('open');
 }
 
 function renderFaq(list) {
@@ -910,64 +846,63 @@ function togFaq(i) {
 
 /* ===================== TICKER ===================== */
 function initTicker() {
-  const items = ['أبواب ألمونتال','نوافذ زجاجية','واجهات فاخرة','كبائن شاور','مطابخ ألمونتال','ضمان 10 سنوات','تركيب 48 ساعة','تصميم 3D مجاني','أسعار تنافسية','جودة عالية'];
-  const html = items.map(t=>`<span class="ticker-item">${t}<span class="ticker-dot">◆</span></span>`).join('');
+  const items = ['أبواب ألمونتال', 'نوافذ زجاجية', 'واجهات فاخرة', 'كبائن شاور', 'مطابخ ألمونتال', 'ضمان 10 سنوات', 'تركيب 48 ساعة', 'تصميم 3D مجاني', 'أسعار تنافسية', 'جودة عالية'];
+  const html = items.map(t => `<span class="ticker-item">${t}<span class="ticker-dot">◆</span></span>`).join('');
   document.getElementById('ticker').innerHTML = html + html;
 }
 
-/* ===================== PRICE ===================== */
-const MODEL_PRICE_KEY = { door:'price_door_base', window:'price_window_base', sliding:'price_window_base', facade:'price_facade_base', shower:'price_shower_base' };
+/* ===================== PRICE CALCULATOR ===================== */
+const MODEL_PRICE_KEY = { door: 'price_door_base', window: 'price_window_base', sliding: 'price_window_base', facade: 'price_facade_base', shower: 'price_shower_base' };
 
 function updatePrice() {
   const h = parseFloat(document.getElementById('ih')?.value || 2.2);
   const w = parseFloat(document.getElementById('iw')?.value || 1.2);
-  if (isNaN(h)||isNaN(w)||h<=0||w<=0) return;
-  const area = +(h*w).toFixed(2);
+  if (isNaN(h) || isNaN(w) || h <= 0 || w <= 0) return;
+
+  const area = +(h * w).toFixed(2);
   const base = PC[MODEL_PRICE_KEY[currentModel]] || 800;
   const glass = PC[glassKey] || 0;
   const finish = PC[finishKey] || 0;
   const handle = PC[handleKey] || 80;
   const lock = PC[lockKey] || 150;
-  const dvH = (PC.divider_horizontal||120)*divs.h;
-  const dvV = (PC.divider_vertical||120)*divs.v;
-  const laborPct = (PC.labor_pct||20)/100;
-  const matCost = area*(base+glass+finish);
-  const extras = handle+lock+dvH+dvV;
-  const labor = (matCost+extras)*laborPct;
-  const total = Math.round(matCost+extras+labor);
+  const dvH = (PC.divider_horizontal || 120) * divs.h;
+  const dvV = (PC.divider_vertical || 120) * divs.v;
+  const laborPct = (PC.labor_pct || 20) / 100;
+  const matCost = area * (base + glass + finish);
+  const extras = handle + lock + dvH + dvV;
+  const labor = (matCost + extras) * laborPct;
+  const total = Math.round(matCost + extras + labor);
 
+  // Animate price
   const pmEl = document.getElementById('pm');
-  const currentVal = parseInt(pmEl.textContent.replace(/[^\d]/g,'')) || 0;
+  const currentVal = parseInt(pmEl.textContent.replace(/[^\d]/g, '')) || 0;
   animateNumber(pmEl, currentVal, total, 400);
 
   document.getElementById('prows').innerHTML = `
     <div class="prow"><span>المساحة</span><span>${area} م²</span></div>
     <div class="prow"><span>سعر المتر الأساسي</span><span>${base.toLocaleString()} ج</span></div>
-    ${glass>0?`<div class="prow"><span>إضافة الزجاج</span><span>+${glass} ج/م²</span></div>`:''}
-    ${finish>0?`<div class="prow"><span>تشطيب فاخر</span><span>+${finish} ج/م²</span></div>`:''}
+    ${glass > 0 ? `<div class="prow"><span>إضافة الزجاج</span><span>+${glass} ج/م²</span></div>` : ''}
+    ${finish > 0 ? `<div class="prow"><span>تشطيب فاخر</span><span>+${finish} ج/م²</span></div>` : ''}
     <div class="prow"><span>إكسسوارات وجوازر</span><span>${extras.toLocaleString()} ج</span></div>
-    <div class="prow"><span>أجر التركيب (${Math.round(laborPct*100)}%)</span><span>${Math.round(labor).toLocaleString()} ج</span></div>
+    <div class="prow"><span>أجر التركيب (${Math.round(laborPct * 100)}%)</span><span>${Math.round(labor).toLocaleString()} ج</span></div>
     <div class="prow tot"><span>الإجمالي التقريبي</span><span>${total.toLocaleString('ar-EG')} ج</span></div>`;
 
-  const st = (id, v) => { const e=document.getElementById(id); if(e) e.textContent=v; };
-  st('cr-h', h.toFixed(2)+' م'); st('cr-w', w.toFixed(2)+' م'); st('cr-a', area.toFixed(2)+' م²');
-  st('cr-d', divs.h+divs.v);
+  // Update readout
+  const st = (id, v) => { const e = document.getElementById(id); if (e) e.textContent = v; };
+  st('cr-h', h.toFixed(2)); st('cr-w', w.toFixed(2)); st('cr-a', area.toFixed(2));
+  st('cr-d', divs.h + divs.v);
   const angEl = document.getElementById('sang');
-  if (angEl) st('cr-ang', angEl.options[angEl.selectedIndex]?.text?.split('—')[0]?.trim()||'90°');
-  // Update dimension badges
-  const dh = document.getElementById('dim-h-badge');
-  const dw = document.getElementById('dim-w-badge');
-  if (dh) dh.textContent = 'ارتفاع: '+h.toFixed(2)+'م';
-  if (dw) dw.textContent = 'عرض: '+w.toFixed(2)+'م';
+  if (angEl) st('cr-ang', angEl.options[angEl.selectedIndex]?.text?.split('—')[0]?.trim() || '90°');
 }
 
 function animateNumber(el, from, to, dur) {
   const start = performance.now();
-  const tick = now => {
-    const p = Math.min((now-start)/dur, 1);
-    const ease = 1 - Math.pow(1-p, 3);
-    el.textContent = Math.round(from+(to-from)*ease).toLocaleString('ar-EG');
-    if (p<1) requestAnimationFrame(tick);
+  const tick = (now) => {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    const val = Math.round(from + (to - from) * ease);
+    el.textContent = val.toLocaleString('ar-EG');
+    if (p < 1) requestAnimationFrame(tick);
   };
   requestAnimationFrame(tick);
 }
@@ -978,20 +913,20 @@ function onDim() {
 }
 
 /* ===================== SELECTORS ===================== */
-const GROUP_IDS = { glass:'glass-opts', finish:'finish-opts', handle:'handle-opts', lock:'lock-opts' };
+const GROUP_IDS = { glass: 'glass-opts', finish: 'finish-opts', handle: 'handle-opts', lock: 'lock-opts' };
 function selOpt(btn, grp) {
-  document.querySelectorAll('#'+GROUP_IDS[grp]+' .ob').forEach(b=>b.classList.remove('sel'));
+  document.querySelectorAll('#' + GROUP_IDS[grp] + ' .ob').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
-  if (grp==='glass') glassKey=btn.dataset.key;
-  if (grp==='finish') finishKey=btn.dataset.key;
-  if (grp==='handle') handleKey=btn.dataset.key;
-  if (grp==='lock') lockKey=btn.dataset.key;
+  if (grp === 'glass') glassKey = btn.dataset.key;
+  if (grp === 'finish') finishKey = btn.dataset.key;
+  if (grp === 'handle') handleKey = btn.dataset.key;
+  if (grp === 'lock') lockKey = btn.dataset.key;
   updatePrice();
-  if (grp==='glass'&&threeReady) updateGlassOpacity();
+  if (grp === 'glass' && threeReady) updateGlassOpacity();
 }
 
 function selSwatch(el) {
-  document.querySelectorAll('.sw2').forEach(s=>s.classList.remove('sel'));
+  document.querySelectorAll('.sw2').forEach(s => s.classList.remove('sel'));
   el.classList.add('sel');
   currentColor = el.dataset.color;
   const n = document.getElementById('swnm');
@@ -1000,485 +935,436 @@ function selSwatch(el) {
 }
 
 function chDiv(dir, d) {
-  if (dir==='h') divs.h=Math.max(0,Math.min(8,divs.h+d));
-  else divs.v=Math.max(0,Math.min(8,divs.v+d));
-  const sh=document.getElementById('dvh'), sv=document.getElementById('dvv');
-  if (sh) sh.textContent=divs.h;
-  if (sv) sv.textContent=divs.v;
+  if (dir === 'h') divs.h = Math.max(0, Math.min(8, divs.h + d));
+  else divs.v = Math.max(0, Math.min(8, divs.v + d));
+  const sh = document.getElementById('dvh'), sv = document.getElementById('dvv');
+  if (sh) sh.textContent = divs.h;
+  if (sv) sv.textContent = divs.v;
   updatePrice();
   if (threeReady) buildModel(currentModel);
 }
 
-/* ===================== THREE.JS UPGRADED ENGINE ===================== */
+/* ===================== THREE.JS 3D ENGINE ===================== */
 function init3D() {
-  if (!window.THREE) { console.warn('Three.js not loaded'); return; }
+  if (!window.THREE) {
+    console.warn('Three.js not loaded');
+    return;
+  }
+
   const container = document.querySelector('.cp');
   const canvas = document.getElementById('three-canvas');
-  if (!container||!canvas) return;
+  if (!container || !canvas) return;
 
   const W = container.clientWidth;
-  const H = container.clientHeight - 46;
+  const H = container.clientHeight - 44; // subtract tabs height
 
-  // Scene
+  // Scene setup
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0C0E12);
-
-  // Subtle gradient background using a plane
-  const bgGeo = new THREE.PlaneGeometry(30, 30);
-  const bgMat = new THREE.ShaderMaterial({
-    uniforms: { colorA: { value: new THREE.Color(0x0C0E12) }, colorB: { value: new THREE.Color(0x111620) } },
-    vertexShader: `varying vec2 vUv; void main(){ vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.); }`,
-    fragmentShader: `uniform vec3 colorA; uniform vec3 colorB; varying vec2 vUv; void main(){ gl_FragColor=vec4(mix(colorA,colorB,vUv.y),1.); }`,
-    depthWrite: false, side: THREE.BackSide
-  });
-  const bgMesh = new THREE.Mesh(bgGeo, bgMat);
-  bgMesh.position.z = -10;
-  bgMesh.renderOrder = -1;
+  scene.background = new THREE.Color(0x111418);
+  scene.fog = new THREE.Fog(0x111418, 10, 28);
 
   // Camera
-  camera = new THREE.PerspectiveCamera(36, W/H, 0.01, 200);
-  camera.position.set(0, 0.4, 5.8);
+  camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 100);
+  camera.position.set(0, 0.3, 5.5);
 
   // Renderer
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(W, H);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.35;
-  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMappingExposure = 1.2;
 
-  // Add BG mesh after renderer init
-  scene.add(bgMesh);
+  // Lighting — much improved
+  const ambient = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambient);
 
-  // ── LIGHTING SETUP (architectural / studio) ──
-  // Key light from top-left
-  const keyLight = new THREE.SpotLight(0xfff5e0, 3.5, 40, Math.PI/5, 0.3);
-  keyLight.position.set(5, 12, 8);
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  keyLight.position.set(4, 8, 6);
   keyLight.castShadow = true;
-  keyLight.shadow.mapSize.set(2048, 2048);
-  keyLight.shadow.bias = -0.0001;
-  keyLight.shadow.camera.near = 0.5;
-  keyLight.shadow.camera.far = 40;
+  keyLight.shadow.mapSize.set(1024, 1024);
+  keyLight.shadow.camera.near = 0.1;
+  keyLight.shadow.camera.far = 30;
   scene.add(keyLight);
-  scene.add(keyLight.target);
 
-  // Rim light (gold backlight)
-  const rimLight = new THREE.SpotLight(0xD4A840, 1.8, 25, Math.PI/4, 0.5);
-  rimLight.position.set(-4, -2, -7);
-  rimLight.target.position.set(0, 0, 0);
-  scene.add(rimLight); scene.add(rimLight.target);
-
-  // Fill (soft blue)
-  const fillLight = new THREE.DirectionalLight(0xC0D8F8, 0.45);
-  fillLight.position.set(-6, 3, 5);
+  const fillLight = new THREE.DirectionalLight(0xc8d8f0, 0.4);
+  fillLight.position.set(-4, 2, -3);
   scene.add(fillLight);
 
-  // Ground bounce
-  const bounceLight = new THREE.PointLight(0xfff0d0, 0.4, 20);
-  bounceLight.position.set(0, -4, 3);
-  scene.add(bounceLight);
+  const rimLight = new THREE.DirectionalLight(0xD4A840, 0.25);
+  rimLight.position.set(0, -3, -5);
+  scene.add(rimLight);
 
-  // Ambient (very subtle)
-  scene.add(new THREE.AmbientLight(0x303040, 0.7));
+  const goldPoint = new THREE.PointLight(0xD4A840, 0.5, 15);
+  goldPoint.position.set(2, 3, 4);
+  scene.add(goldPoint);
 
-  // ── STUDIO FLOOR (reflective) ──
-  const floorGeo = new THREE.PlaneGeometry(28, 28);
-  const floorMat = new THREE.MeshStandardMaterial({
-    color: 0x111218, metalness: 0.1, roughness: 0.85
-  });
-  const floor = new THREE.Mesh(floorGeo, floorMat);
-  floor.rotation.x = -Math.PI/2;
-  floor.position.y = -2.55;
-  floor.receiveShadow = true;
-  scene.add(floor);
+  // Ground plane (shadow catcher)
+  const groundGeo = new THREE.PlaneGeometry(20, 20);
+  const groundMat = new THREE.ShadowMaterial({ opacity: 0.25 });
+  const ground = new THREE.Mesh(groundGeo, groundMat);
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -2.4;
+  ground.receiveShadow = true;
+  scene.add(ground);
 
-  // Subtle grid (very faint)
-  const gridHelper = new THREE.GridHelper(16, 32, 0x1C1E26, 0x161820);
-  gridHelper.position.y = -2.54;
+  // Environment: grid
+  const gridHelper = new THREE.GridHelper(12, 24, 0x2a2a2a, 0x1a1a1a);
+  gridHelper.position.y = -2.4;
   scene.add(gridHelper);
 
-  // ── SHADOW HELPER PLANE ──
-  const shadowGeo = new THREE.PlaneGeometry(20, 20);
-  const shadowMat = new THREE.ShadowMaterial({ opacity: 0.4 });
-  const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
-  shadowPlane.rotation.x = -Math.PI/2;
-  shadowPlane.position.y = -2.52;
-  shadowPlane.receiveShadow = true;
-  scene.add(shadowPlane);
-
-  // Build model
+  // Build initial model
   buildModel('door');
   threeReady = true;
 
+  // Hide loading overlay
   const loadingEl = document.getElementById('cv-loading');
   if (loadingEl) loadingEl.classList.add('hidden');
 
-  // ── ANIMATION LOOP ──
+  // Animation loop
   let lastTime = 0;
   function animate(time) {
     animId = requestAnimationFrame(animate);
     const delta = (time - lastTime) / 1000;
     lastTime = time;
+
     if (mg && autoRotate && !dragging) {
-      mg.rotation.y += 0.0045;
+      mg.rotation.y += 0.005;
     }
+
     renderer.render(scene, camera);
   }
   animate(0);
 
-  setupCanvasControls(canvas, container);
+  // Mouse/touch controls
+  setupCanvasControls(canvas);
 
+  // Resize
   window.addEventListener('resize', () => {
     const W2 = container.clientWidth;
-    const H2 = container.clientHeight - 46;
-    if (W2>0 && H2>0) {
-      camera.aspect = W2/H2;
+    const H2 = container.clientHeight - 44;
+    if (W2 > 0 && H2 > 0) {
+      camera.aspect = W2 / H2;
       camera.updateProjectionMatrix();
       renderer.setSize(W2, H2);
     }
   });
 }
 
-function setupCanvasControls(canvas, container) {
+function setupCanvasControls(canvas) {
+  // Mouse
   canvas.addEventListener('mousedown', e => {
-    dragging=true; autoRotate=false;
-    lastMX={x:e.clientX,y:e.clientY};
-    canvas.style.cursor='grabbing';
+    dragging = true;
+    autoRotate = false;
+    lastMX = { x: e.clientX, y: e.clientY };
+    canvas.style.cursor = 'grabbing';
   });
   document.addEventListener('mouseup', () => {
-    dragging=false; canvas.style.cursor='grab';
-    setTimeout(()=>{ autoRotate=true; }, 2800);
+    dragging = false;
+    canvas.style.cursor = 'grab';
+    setTimeout(() => { autoRotate = true; }, 2500);
   });
   document.addEventListener('mousemove', e => {
-    if (!dragging||!mg) return;
-    const dx=e.clientX-lastMX.x, dy=e.clientY-lastMX.y;
-    mg.rotation.y += dx*0.007;
-    mg.rotation.x = Math.max(-0.6,Math.min(0.6, mg.rotation.x+dy*0.005));
-    lastMX={x:e.clientX,y:e.clientY};
+    if (!dragging || !mg) return;
+    const dx = e.clientX - lastMX.x;
+    const dy = e.clientY - lastMX.y;
+    mg.rotation.y += dx * 0.007;
+    mg.rotation.x = Math.max(-0.65, Math.min(0.65, mg.rotation.x + dy * 0.005));
+    lastMX = { x: e.clientX, y: e.clientY };
   });
+
+  // Wheel zoom
   canvas.addEventListener('wheel', e => {
-    camera.position.z = Math.max(2.2,Math.min(12, camera.position.z+e.deltaY*0.005));
+    camera.position.z = Math.max(2, Math.min(11, camera.position.z + e.deltaY * 0.005));
     e.preventDefault();
-  }, { passive:false });
+  }, { passive: false });
+
+  // Touch
   canvas.addEventListener('touchstart', e => {
-    if (e.touches.length===1) { dragging=true; autoRotate=false; lastMX={x:e.touches[0].clientX,y:e.touches[0].clientY}; }
-    else if (e.touches.length===2) {
-      const dx=e.touches[0].clientX-e.touches[1].clientX, dy=e.touches[0].clientY-e.touches[1].clientY;
-      pinchDist=Math.sqrt(dx*dx+dy*dy);
+    if (e.touches.length === 1) {
+      dragging = true; autoRotate = false;
+      lastMX = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    } else if (e.touches.length === 2) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      pinchDist = Math.sqrt(dx * dx + dy * dy);
     }
-  }, { passive:true });
+  }, { passive: true });
+
   canvas.addEventListener('touchmove', e => {
-    if (e.touches.length===1&&dragging&&mg) {
-      const dx=e.touches[0].clientX-lastMX.x, dy=e.touches[0].clientY-lastMX.y;
-      mg.rotation.y+=dx*0.009; mg.rotation.x=Math.max(-0.6,Math.min(0.6,mg.rotation.x+dy*0.007));
-      lastMX={x:e.touches[0].clientX,y:e.touches[0].clientY};
-    } else if (e.touches.length===2&&pinchDist!==null) {
-      const dx=e.touches[0].clientX-e.touches[1].clientX, dy=e.touches[0].clientY-e.touches[1].clientY;
-      const nd=Math.sqrt(dx*dx+dy*dy);
-      camera.position.z=Math.max(2.2,Math.min(12,camera.position.z-(nd-pinchDist)*0.008));
-      pinchDist=nd;
+    if (e.touches.length === 1 && dragging && mg) {
+      const dx = e.touches[0].clientX - lastMX.x;
+      const dy = e.touches[0].clientY - lastMX.y;
+      mg.rotation.y += dx * 0.009;
+      mg.rotation.x = Math.max(-0.65, Math.min(0.65, mg.rotation.x + dy * 0.007));
+      lastMX = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    } else if (e.touches.length === 2 && pinchDist !== null) {
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
+      const newDist = Math.sqrt(dx * dx + dy * dy);
+      camera.position.z = Math.max(2, Math.min(11, camera.position.z - (newDist - pinchDist) * 0.008));
+      pinchDist = newDist;
     }
     e.preventDefault();
-  }, { passive:false });
-  canvas.addEventListener('touchend', () => { dragging=false; pinchDist=null; setTimeout(()=>autoRotate=true,2800); });
-  canvas.style.cursor='grab';
+  }, { passive: false });
+
+  canvas.addEventListener('touchend', () => {
+    dragging = false; pinchDist = null;
+    setTimeout(() => { autoRotate = true; }, 2500);
+  });
+
+  canvas.style.cursor = 'grab';
 }
 
-/* ── BUILD MODEL ── */
+/* ===================== MODEL BUILDER ===================== */
 function buildModel(type) {
-  if (!scene||!window.THREE) return;
+  if (!scene || !THREE) return;
+
+  // Remove old model with fade-out effect
   if (mg) {
-    mg.traverse(c=>{ if(c.isMesh){ c.geometry.dispose(); if(Array.isArray(c.material)) c.material.forEach(m=>m.dispose()); else c.material.dispose(); }});
-    scene.remove(mg);
+    const old = mg;
+    // Quick disposal
+    old.traverse(c => {
+      if (c.isMesh) {
+        c.geometry.dispose();
+        if (Array.isArray(c.material)) c.material.forEach(m => m.dispose());
+        else c.material.dispose();
+      }
+    });
+    scene.remove(old);
   }
+
   mg = new THREE.Group();
 
-  const H = parseFloat(document.getElementById('ih')?.value||2.2);
-  const W = parseFloat(document.getElementById('iw')?.value||1.2);
-  const FT_CM = parseFloat(document.getElementById('id')?.value||7);
-  const GL_MM = parseFloat(document.getElementById('ig')?.value||6);
-  const angle = document.getElementById('sang')?.value||'90';
-  const openType = document.getElementById('sopen')?.value||'swing';
+  const H = parseFloat(document.getElementById('ih')?.value || 2.2);
+  const W = parseFloat(document.getElementById('iw')?.value || 1.2);
+  const FT_CM = parseFloat(document.getElementById('id')?.value || 7);
+  const GL_MM = parseFloat(document.getElementById('ig')?.value || 6);
+  const angle = document.getElementById('sang')?.value || '90';
+  const openType = document.getElementById('sopen')?.value || 'swing';
 
+  // Scale everything to fit nicely in viewport
   const maxDim = Math.max(H, W);
-  const sc = 3.0/Math.max(maxDim, 1.0);
-  const sh = H*sc, sw = W*sc;
-  const ft = (FT_CM/100)*sc*2.0;
-  const glThickness = Math.max(0.012, (GL_MM/1000)*sc*10);
+  const sc = 3.2 / Math.max(maxDim, 1.0);
+  const sh = H * sc, sw = W * sc;
+  const ft = (FT_CM / 100) * sc * 1.8;
+  const glThickness = (GL_MM / 1000) * sc * 8;
 
-  // Materials - improved metallic frame
-  const frameHex = parseInt(currentColor.replace('#',''), 16);
+  // Materials
   const frameColor = new THREE.Color(currentColor);
-  const frameDark = frameColor.clone().multiplyScalar(0.5);
-  const frameLight = frameColor.clone().multiplyScalar(1.3).clampLength(0,1);
+  const frameDark = frameColor.clone().multiplyScalar(0.55);
+  const fmat = new THREE.MeshStandardMaterial({ color: frameColor, metalness: 0.85, roughness: 0.18 });
+  const fdark = new THREE.MeshStandardMaterial({ color: frameDark, metalness: 0.9, roughness: 0.12 });
 
-  const fmat = new THREE.MeshStandardMaterial({ color:frameColor, metalness:0.88, roughness:0.14, envMapIntensity:1.2 });
-  const fdark = new THREE.MeshStandardMaterial({ color:frameDark, metalness:0.92, roughness:0.10 });
-  const flight = new THREE.MeshStandardMaterial({ color:frameLight, metalness:0.80, roughness:0.20 });
+  // Glass opacity based on type
+  const glassOpacity = { glass_frosted: 0.7, glass_5mm: 0.14, glass_6mm: 0.14, glass_8mm_tempered: 0.16, glass_10mm_tempered: 0.18, glass_double: 0.2, glass_smart: 0.45 }[glassKey] || 0.15;
+  const glassColor = glassKey === 'glass_smart' ? 0x88CCDD : 0xC4E4F8;
+  const gmat = new THREE.MeshStandardMaterial({ color: glassColor, transparent: true, opacity: glassOpacity, metalness: 0.0, roughness: 0.02, side: THREE.DoubleSide, envMapIntensity: 1 });
+  const goldMat = new THREE.MeshStandardMaterial({ color: 0xD4A840, metalness: 0.98, roughness: 0.06 });
+  const chromeMat = new THREE.MeshStandardMaterial({ color: 0xE8E8E8, metalness: 0.98, roughness: 0.04 });
 
-  // Glass
-  const glassConfigs = {
-    glass_frosted:  { color:0xD8E8F0, opacity:0.72, roughness:0.55 },
-    glass_5mm:      { color:0xB8DCF0, opacity:0.12, roughness:0.03 },
-    glass_6mm:      { color:0xB0D8EC, opacity:0.14, roughness:0.03 },
-    glass_8mm_tempered: { color:0xA8D4E8, opacity:0.17, roughness:0.02 },
-    glass_10mm_tempered:{ color:0xA0D0E4, opacity:0.20, roughness:0.02 },
-    glass_double:   { color:0x98CCE0, opacity:0.22, roughness:0.04 },
-    glass_smart:    { color:0x70B8CC, opacity:0.55, roughness:0.0 }
-  };
-  const gc = glassConfigs[glassKey] || glassConfigs.glass_5mm;
-  const gmat = new THREE.MeshStandardMaterial({
-    color: gc.color, transparent:true, opacity:gc.opacity,
-    metalness:0.05, roughness:gc.roughness,
-    side:THREE.DoubleSide, envMapIntensity:1.5
-  });
-
-  // Gold/chrome hardware
-  const goldMat = new THREE.MeshStandardMaterial({ color:0xD4A840, metalness:0.98, roughness:0.05 });
-  const chromeMat = new THREE.MeshStandardMaterial({ color:0xE8EAEC, metalness:0.98, roughness:0.04 });
-  const darkChrome = new THREE.MeshStandardMaterial({ color:0x222628, metalness:0.9, roughness:0.1 });
-
-  // Helper: precise box mesh with shadow
-  const mb = (mat, w, h, d, x, y, z, rx=0, ry=0, rz=0) => {
-    const m = new THREE.Mesh(
-      new THREE.BoxGeometry(Math.max(w,0.002), Math.max(h,0.002), Math.max(d,0.005)),
-      mat
-    );
-    m.position.set(x, y, z); m.rotation.set(rx, ry, rz);
-    m.castShadow=true; m.receiveShadow=true;
+  // Helper: add box mesh
+  const mb = (mat, w, h, d, x, y, z, rx = 0, ry = 0, rz = 0) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(Math.max(w, 0.001), Math.max(h, 0.001), Math.max(d, 0.004)), mat);
+    m.position.set(x, y, z);
+    m.rotation.set(rx, ry, rz);
+    m.castShadow = true; m.receiveShadow = true;
     mg.add(m); return m;
   };
 
-  // Helper: cylinder
-  const mc = (mat, r, h, x, y, z, rx=0) => {
-    const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, 16), mat);
-    m.position.set(x,y,z); m.rotation.x=rx; m.castShadow=true; mg.add(m); return m;
-  };
-
-  // ── OUTER FRAME PROFILE ──
-  const fd = ft*2.0; // frame depth (z thickness)
-  // Top rail — with beveled edge detail
-  mb(fmat, sw, ft, fd, 0, sh/2-ft/2, 0);
-  mb(flight, sw-ft, ft*0.12, fd*0.25, 0, sh/2-ft*0.08, fd*0.4); // edge highlight
-  // Bottom rail (sill profile)
-  mb(fmat, sw, ft*1.1, fd, 0, -sh/2+ft*0.55, 0);
-  mb(fmat, sw+ft*0.3, ft*0.25, fd*0.6, 0, -sh/2+ft*0.06, 0); // sill drip edge
-  mb(flight, sw-ft, ft*0.1, fd*0.25, 0, -sh/2+ft*0.1, fd*0.4);
+  // ── OUTER FRAME ──
+  // Top rail
+  mb(fmat, sw, ft, ft * 1.8, 0, sh / 2 - ft / 2, 0);
+  // Bottom rail
+  mb(fmat, sw, ft, ft * 1.8, 0, -sh / 2 + ft / 2, 0);
   // Left stile
-  mb(fmat, ft, sh, fd, -sw/2+ft/2, 0, 0);
-  mb(flight, ft*0.12, sh-ft*1.6, fd*0.25, -sw/2+ft*0.08, 0, fd*0.4);
+  mb(fmat, ft, sh, ft * 1.8, -sw / 2 + ft / 2, 0, 0);
   // Right stile
-  mb(fmat, ft, sh, fd, sw/2-ft/2, 0, 0);
-  mb(flight, ft*0.12, sh-ft*1.6, fd*0.25, sw/2-ft*0.08, 0, fd*0.4);
+  mb(fmat, ft, sh, ft * 1.8, sw / 2 - ft / 2, 0, 0);
 
-  // ── INNER GLAZING BEAD (stop profile) ──
-  const beadW = ft*0.28, beadD = fd*0.45;
-  mb(fdark, sw-ft*1.8, beadW, beadD, 0, sh/2-ft*0.85, fd*0.55);
-  mb(fdark, sw-ft*1.8, beadW, beadD, 0, -sh/2+ft*0.88, fd*0.55);
-  mb(fdark, beadW, sh-ft*1.8, beadD, -sw/2+ft*0.85, 0, fd*0.55);
-  mb(fdark, beadW, sh-ft*1.8, beadD, sw/2-ft*0.85, 0, fd*0.55);
-
-  // ── THERMAL BREAK LINE (realistic detail) ──
-  mb(darkChrome, sw-ft*1.6, ft*0.07, fd*0.12, 0, sh/2-ft*0.5, fd*0.28);
-  mb(darkChrome, sw-ft*1.6, ft*0.07, fd*0.12, 0, -sh/2+ft*0.5, fd*0.28);
-  mb(darkChrome, ft*0.07, sh-ft*1.6, fd*0.12, -sw/2+ft*0.5, 0, fd*0.28);
-  mb(darkChrome, ft*0.07, sh-ft*1.6, fd*0.12, sw/2-ft*0.5, 0, fd*0.28);
+  // ── INNER STOP (depth detail) ──
+  mb(fdark, sw - ft * 0.5, ft * 0.3, ft * 0.4, 0, sh / 2 - ft * 0.85, ft * 0.7);
+  mb(fdark, sw - ft * 0.5, ft * 0.3, ft * 0.4, 0, -sh / 2 + ft * 0.85, ft * 0.7);
+  mb(fdark, ft * 0.3, sh - ft * 1.5, ft * 0.4, -sw / 2 + ft * 0.85, 0, ft * 0.7);
+  mb(fdark, ft * 0.3, sh - ft * 1.5, ft * 0.4, sw / 2 - ft * 0.85, 0, ft * 0.7);
 
   // ── CORNER TREATMENT ──
-  if (angle==='45'||angle==='30') {
-    const offs = angle==='45' ? ft*1.0 : ft*0.6;
-    [[sw/2-ft,sh/2-ft],[-sw/2+ft,sh/2-ft],[sw/2-ft,-sh/2+ft],[-sw/2+ft,-sh/2+ft]].forEach(([cx,cy])=>{
-      const cut = new THREE.Mesh(new THREE.BoxGeometry(offs, offs, fd+0.01), fdark);
-      cut.rotation.z=Math.PI/4; cut.position.set(cx,cy,0); cut.castShadow=true; mg.add(cut);
+  if (angle === '45' || angle === '30') {
+    const corners = [[sw / 2 - ft, sh / 2 - ft], [-sw / 2 + ft, sh / 2 - ft], [sw / 2 - ft, -sh / 2 + ft], [-sw / 2 + ft, -sh / 2 + ft]];
+    corners.forEach(([cx, cy]) => {
+      const cap = new THREE.Mesh(new THREE.BoxGeometry(ft * 1.0, ft * 1.0, ft * 1.9), fdark);
+      cap.rotation.z = Math.PI / 4;
+      cap.position.set(cx, cy, 0);
+      cap.castShadow = true; mg.add(cap);
     });
-  } else if (angle==='arc') {
-    // Arched top: replace top rail with semicircle
-    for (let i=0; i<=24; i++) {
-      const a=(i/24)*Math.PI;
-      const r=sw/2-ft/2;
-      const x=Math.cos(Math.PI-a)*r, y=sh/2-ft/2+Math.sin(a)*(sw/4);
-      const seg=new THREE.Mesh(new THREE.BoxGeometry(ft*1.1,ft*0.65,fd),fmat);
-      seg.position.set(x,y,0); seg.rotation.z=-Math.atan2(Math.cos(a),Math.sin(a));
-      seg.castShadow=true; mg.add(seg);
+  } else if (angle === 'arc') {
+    const arcPts = [];
+    for (let i = 0; i <= 18; i++) {
+      const a = (i / 18) * Math.PI;
+      arcPts.push(new THREE.Vector3(Math.cos(a) * (sw / 2 - ft * 0.5), sh / 2 - ft / 2 + Math.sin(a) * ft * 1.5, 0));
+    }
+    for (let i = 0; i < arcPts.length - 1; i++) {
+      const seg = new THREE.Mesh(new THREE.BoxGeometry(ft * 0.5, ft * 0.5, ft * 1.8), fmat);
+      const mid = arcPts[i].clone().add(arcPts[i + 1]).multiplyScalar(0.5);
+      seg.position.copy(mid); seg.castShadow = true; mg.add(seg);
     }
   }
 
-  // ── GLASS PANES ──
-  const innerW = sw-ft*2.1, innerH = sh-ft*2.3;
-  const cols=divs.v+1, rows=divs.h+1;
-  const cellW=innerW/cols, cellH=innerH/rows;
+  // ── GLASS PANES with DIVIDERS ──
+  const innerW = sw - ft * 2.1, innerH = sh - ft * 2.1;
+  const cols = divs.v + 1, rows = divs.h + 1;
+  const cellW = innerW / cols, cellH = innerH / rows;
 
-  for (let r=0; r<rows; r++) {
-    for (let c=0; c<cols; c++) {
-      const gx = -innerW/2+cellW*(c+0.5);
-      const gy = -innerH/2+cellH*(r+0.5);
-      // Glass pane
-      const pane = new THREE.Mesh(new THREE.BoxGeometry(cellW*0.94, cellH*0.94, glThickness), gmat);
-      pane.position.set(gx, gy, fd*0.02);
-      pane.receiveShadow=true; mg.add(pane);
-      // Glass reflection plane (subtle sheen)
-      if (gc.opacity < 0.4) {
-        const sheen = new THREE.Mesh(new THREE.PlaneGeometry(cellW*0.88, cellH*0.88),
-          new THREE.MeshStandardMaterial({ color:0xffffff, transparent:true, opacity:0.04, metalness:1, roughness:0 }));
-        sheen.position.set(gx, gy+cellH*0.05, fd*0.02+glThickness/2+0.001);
-        mg.add(sheen);
-      }
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const gx = -innerW / 2 + cellW * (c + 0.5);
+      const gy = -innerH / 2 + cellH * (r + 0.5);
+      const pane = new THREE.Mesh(new THREE.BoxGeometry(cellW * 0.92, cellH * 0.92, glThickness), gmat);
+      pane.position.set(gx, gy, ft * 0.1);
+      pane.castShadow = false; pane.receiveShadow = true; mg.add(pane);
     }
   }
 
-  // ── DIVIDERS (mullions/transoms) ──
-  for (let d=1; d<=divs.h; d++) {
-    const y=-innerH/2+(innerH/rows)*d;
-    mb(fmat, innerW+ft*0.1, ft*0.8, fd*0.9, 0, y, 0);
-    mb(fdark, innerW-ft*0.5, ft*0.22, fd*0.4, 0, y, fd*0.42);
-    mb(flight, innerW-ft*0.8, ft*0.06, fd*0.2, 0, y+ft*0.35, fd*0.46);
+  // Horizontal dividers
+  for (let d = 1; d <= divs.h; d++) {
+    const y = -innerH / 2 + (innerH / rows) * d;
+    mb(fmat, innerW, ft * 0.7, ft * 1.5, 0, y, 0);
+    mb(fdark, innerW, ft * 0.25, ft * 0.35, 0, y, ft * 0.6);
   }
-  for (let d=1; d<=divs.v; d++) {
-    const x=-innerW/2+(innerW/cols)*d;
-    mb(fmat, ft*0.8, innerH+ft*0.1, fd*0.9, x, 0, 0);
-    mb(fdark, ft*0.22, innerH-ft*0.5, fd*0.4, x, 0, fd*0.42);
-    mb(flight, ft*0.06, innerH-ft*0.8, fd*0.2, x+ft*0.35, 0, fd*0.46);
+  // Vertical dividers
+  for (let d = 1; d <= divs.v; d++) {
+    const x = -innerW / 2 + (innerW / cols) * d;
+    mb(fmat, ft * 0.7, innerH, ft * 1.5, x, 0, 0);
+    mb(fdark, ft * 0.25, innerH, ft * 0.35, x, 0, ft * 0.6);
   }
 
-  // ── HARDWARE: HINGES ──
-  const hingeMat = handleKey==='handle_premium' ? goldMat : chromeMat;
-  if (openType==='swing'||openType==='flip') {
-    const hingePositions = sh>2.5*sc ? [sh*0.36,-sh*0.36,0] : [sh*0.3,-sh*0.3];
-    hingePositions.forEach(hy=>{
-      // Hinge plate (face)
-      mb(hingeMat, ft*0.22, ft*1.4, ft*0.18, -sw/2+ft*0.5, hy, fd*0.88);
-      // Hinge barrel
-      mc(new THREE.MeshStandardMaterial({color:hingeMat.color.clone().multiplyScalar(0.7),metalness:.95,roughness:.08}),
-        ft*0.12, ft*0.18, -sw/2+ft*0.5, hy, fd+ft*0.06, 0);
-      mc(new THREE.MeshStandardMaterial({color:hingeMat.color.clone().multiplyScalar(0.7),metalness:.95,roughness:.08}),
-        ft*0.12, ft*0.18, -sw/2+ft*0.5, hy-ft*0.55, fd+ft*0.06, 0);
-      mc(new THREE.MeshStandardMaterial({color:hingeMat.color.clone().multiplyScalar(0.7),metalness:.95,roughness:.08}),
-        ft*0.12, ft*0.18, -sw/2+ft*0.5, hy+ft*0.55, fd+ft*0.06, 0);
+  // ── OPENING MECHANISM ──
+  if (openType === 'swing') {
+    // Hinges
+    const hingeMat = lockKey === 'lock_digital' ? goldMat : chromeMat;
+    [sh * 0.3, -sh * 0.3, 0].forEach(hy => {
+      const hinge = new THREE.Mesh(new THREE.CylinderGeometry(ft * 0.18, ft * 0.18, ft * 0.9, 12), hingeMat);
+      hinge.rotation.z = Math.PI / 2;
+      hinge.position.set(-sw / 2 + ft * 0.45, hy, ft * 0.85);
+      hinge.castShadow = true; mg.add(hinge);
     });
-  }
-
-  // ── HARDWARE: HANDLE ──
-  if (openType!=='fixed') {
-    const hndMat = handleKey==='handle_premium' ? goldMat : chromeMat;
-    const hx = sw/2-ft*1.35;
-    // Rose plate
-    mb(hndMat, ft*0.22, ft*1.1, ft*0.12, hx, 0, fd+ft*0.04);
-    // Handle bar (ergonomic shape with cylinder)
-    mc(hndMat, ft*0.065, ft*1.8, hx, 0, fd+ft*0.25, 0);
-    // End caps
-    mc(new THREE.MeshStandardMaterial({color:hndMat.color,metalness:.98,roughness:.04}),
-      ft*0.09, ft*0.08, hx, ft*0.9, fd+ft*0.25, 0);
-    mc(new THREE.MeshStandardMaterial({color:hndMat.color,metalness:.98,roughness:.04}),
-      ft*0.09, ft*0.08, hx, -ft*0.9, fd+ft*0.25, 0);
-    // Connecting arms
-    mb(hndMat, ft*0.55, ft*0.065, ft*0.065, hx-ft*0.28, ft*0.82, fd+ft*0.175);
-    mb(hndMat, ft*0.55, ft*0.065, ft*0.065, hx-ft*0.28, -ft*0.82, fd+ft*0.175);
-
-    // Lock cylinder
-    if (lockKey==='lock_digital') {
-      mb(goldMat, ft*0.68, ft*1.3, ft*0.22, hx, 0, fd+ft*0.12);
-      mc(goldMat, ft*0.08, ft*0.06, hx+ft*0.1, -ft*0.22, fd+ft*0.28, 0);
-    } else {
-      mc(darkChrome, ft*0.09, ft*0.12, hx, -ft*0.28, fd+ft*0.04, 0);
+    // Handle
+    const hndMat = handleKey === 'handle_premium' ? goldMat : chromeMat;
+    mb(hndMat, ft * 0.12, ft * 1.6, ft * 0.12, sw / 2 - ft * 1.4, 0, ft * 0.88);
+    mb(hndMat, ft * 0.55, ft * 0.12, ft * 0.12, sw / 2 - ft * 1.4 - ft * 0.27, ft * 0.7, ft * 0.88);
+    mb(hndMat, ft * 0.55, ft * 0.12, ft * 0.12, sw / 2 - ft * 1.4 - ft * 0.27, -ft * 0.7, ft * 0.88);
+    // Lock
+    if (lockKey === 'lock_digital') {
+      mb(goldMat, ft * 0.65, ft * 1.1, ft * 0.18, sw / 2 - ft * 1.4, 0, ft * 1.1);
     }
-  }
-
-  // ── SLIDING HARDWARE ──
-  if (openType==='slide') {
-    mb(fdark, sw*1.2, ft*0.32, ft*0.32, 0, sh/2+ft*0.18, -fd*0.35);
-    mb(fdark, sw*1.2, ft*0.32, ft*0.32, 0, -sh/2-ft*0.18, -fd*0.35);
-    mc(chromeMat, ft*0.07, ft*1.5, sw*0.3, 0, fd+ft*0.2, 0);
-    // Roller wheels detail
-    [-sw*0.3, sw*0.3].forEach(rx=>{
-      mc(darkChrome, ft*0.1, ft*0.12, rx, -sh/2+ft*0.1, -fd*0.1, Math.PI/2);
+  } else if (openType === 'slide') {
+    // Sliding track
+    mb(fdark, sw * 1.15, ft * 0.28, ft * 0.28, 0, sh / 2 + ft * 0.15, -ft * 0.4);
+    mb(fdark, sw * 1.15, ft * 0.28, ft * 0.28, 0, -sh / 2 - ft * 0.15, -ft * 0.4);
+    mb(chromeMat, ft * 0.1, ft * 1.4, ft * 0.1, sw * 0.32, 0, ft * 0.92);
+  } else if (openType === 'flip') {
+    // Hydraulic arms
+    [-sw * 0.28, sw * 0.28].forEach(ax => {
+      mb(fdark, ft * 0.3, sh * 0.42, ft * 0.3, ax, sh * 0.15, ft * 1.0);
     });
+  } else if (openType === 'fold') {
+    // Fold line indicator
+    mb(fdark, ft * 0.2, sh * 0.85, ft * 0.2, 0, 0, ft * 0.95);
   }
 
-  // ── FLIP TOP ARMS ──
-  if (openType==='flip') {
-    [-sw*0.28,sw*0.28].forEach(ax=>{
-      mb(fdark, ft*0.28, sh*0.42, ft*0.28, ax, sh*0.14, fd*0.9);
-      mc(chromeMat, ft*0.06, ft*0.1, ax, sh*0.36, fd*0.9, 0);
-    });
-  }
+  // ── TYPE-SPECIFIC EXTRAS ──
 
-  // ── TYPE EXTRAS ──
-  // Door threshold
-  if (type==='door'||type==='sliding') {
-    mb(fmat, sw+ft, ft*0.55, fd*3.0, 0, -sh/2-ft*0.27, -fd*0.2);
-    mb(new THREE.MeshStandardMaterial({color:0x080A0E,metalness:0.2,roughness:0.9}), sw+ft*0.6, ft*0.12, fd*2.6, 0, -sh/2-ft*0.47, -fd*0.1);
+  // Floor threshold (door & sliding)
+  if (type === 'door' || type === 'sliding') {
+    mb(fmat, sw + ft, ft * 0.5, ft * 2.5, 0, -sh / 2 - ft * 0.25, -ft * 0.2);
   }
 
   // Window sill
-  if (type==='window') {
-    const sillMat = new THREE.MeshStandardMaterial({color:0xD8D4CC,metalness:0.05,roughness:0.85});
-    mb(sillMat, sw+ft*2.4, ft*0.7, fd*3.0, 0, -sh/2-ft*0.35, -fd*0.15);
-    mb(new THREE.MeshStandardMaterial({color:0xB0ACA6,metalness:0.0,roughness:0.9}), sw+ft*1.8, ft*0.1, fd*2.8, 0, -sh/2-ft*0.68, -fd*0.1);
+  if (type === 'window') {
+    mb(new THREE.MeshStandardMaterial({ color: 0xE0DDD8, metalness: 0.1, roughness: 0.8 }), sw + ft * 2, ft * 0.6, ft * 2.2, 0, -sh / 2 - ft * 0.3, -ft * 0.2);
   }
 
-  // Shower side panel
-  if (type==='shower') {
-    const sideMat = new THREE.MeshStandardMaterial({color:0xC8E8F4,transparent:true,opacity:0.18,roughness:0.02,side:THREE.DoubleSide});
-    const spH = sh*0.9, spW = sw*0.55;
-    mb(sideMat, spW, spH, glThickness, -sw/2-spW/2-ft*0.1, 0, 0);
+  // Shower panel (side glass)
+  if (type === 'shower') {
+    const sideGroup = new THREE.Group();
+    const sideMat = new THREE.MeshStandardMaterial({ color: 0xD0EEF8, transparent: true, opacity: 0.22, roughness: 0.02, side: THREE.DoubleSide });
+    const sidePane = new THREE.Mesh(new THREE.BoxGeometry(sw * 0.6, sh * 0.9, glThickness * 1.2), sideMat);
+    sideGroup.add(sidePane);
     // Side frame
-    mb(fmat, ft, spH, fd, -sw/2-spW-ft/2+ft*0.05, 0, 0);
-    mb(fmat, spW+ft, ft, fd, -sw/2-spW/2-ft*0.05, spH/2-ft/2, 0);
-    mb(fmat, spW+ft, ft, fd, -sw/2-spW/2-ft*0.05, -spH/2+ft/2, 0);
+    [[-sw * 0.3, 0, 0], [sw * 0.3, 0, 0], [0, sh * 0.45, 0], [0, -sh * 0.45, 0]].forEach(([x, y, z]) => {
+      const isV = y !== 0;
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(isV ? sw * 0.6 : ft, isV ? ft : sh * 0.9, ft * 1.2), fmat);
+      bar.position.set(x, y, z); sideGroup.add(bar);
+    });
+    sideGroup.position.set(-sw / 2 - sw * 0.3 - ft, 0, 0);
+    sideGroup.rotation.y = Math.PI / 6;
+    sideGroup.castShadow = true; mg.add(sideGroup);
+
     // Shower floor
-    mb(new THREE.MeshStandardMaterial({color:0xC0BCB6,roughness:0.9}),
-       sw+spW+ft*1.5, ft*0.5, sw+spW, -spW*0.28, -sh/2-ft*0.25, -(sw+spW)*0.18);
+    mb(new THREE.MeshStandardMaterial({ color: 0xC8C4BE, roughness: 0.9 }), sw + sw * 0.7, ft * 0.5, sw + sw * 0.5, -sw * 0.15, -sh / 2 - ft * 0.25, -sw * 0.1);
   }
 
-  // Facade extra mullions
-  if (type==='facade'&&divs.v===0&&divs.h===0) {
-    [-sw*0.3,0,sw*0.3].forEach(x=>mb(fdark,ft*0.5,sh,fd*0.35,x,0,fd*0.2));
-    [-sh*0.25,sh*0.25].forEach(y=>mb(fdark,sw,ft*0.4,fd*0.35,0,y,fd*0.2));
+  // Facade: extra mullions + horizontal rails
+  if (type === 'facade') {
+    if (divs.v === 0 && divs.h === 0) {
+      [-sw * 0.3, 0, sw * 0.3].forEach(x => mb(fdark, ft * 0.45, sh, ft * 0.3, x, 0, ft * 0.2));
+      [-sh * 0.25, sh * 0.25].forEach(y => mb(fdark, sw, ft * 0.35, ft * 0.3, 0, y, ft * 0.2));
+    }
   }
 
-  // ── POSITION, INITIAL ROTATION ──
-  mg.position.set(0, 0.15, 0);
-  mg.rotation.set(-0.04, 0.28, 0);
+  // ── SHADOW PLANE UNDER MODEL ──
+  const shadowPlane = new THREE.Mesh(
+    new THREE.PlaneGeometry(sw * 1.5, sw * 1.5),
+    new THREE.ShadowMaterial({ opacity: 0.3 })
+  );
+  shadowPlane.rotation.x = -Math.PI / 2;
+  shadowPlane.position.y = -sh / 2 - ft * 0.3;
+  shadowPlane.receiveShadow = true;
+  mg.add(shadowPlane);
+
+  // Position & orientation
+  mg.position.set(0, 0.1, 0);
+  mg.rotation.set(-0.05, 0.3, 0);
   scene.add(mg);
 }
 
 function updateFrameColor() {
   if (!mg) return;
   const newColor = new THREE.Color(currentColor);
-  const dark = newColor.clone().multiplyScalar(0.5);
-  const light = newColor.clone().multiplyScalar(1.3).clampLength(0,1);
-  mg.traverse(c=>{
-    if (!c.isMesh||!c.material) return;
-    const m = c.material;
-    if (!m.transparent && m.metalness>0.6) {
-      const lum = m.color.r*0.3+m.color.g*0.59+m.color.b*0.11;
-      if (lum>0.35 && lum<0.85) m.color.copy(newColor);
-      else if (lum<=0.35) m.color.copy(dark);
-      else m.color.copy(light);
+  mg.traverse(c => {
+    if (c.isMesh && c.material) {
+      const m = c.material;
+      if (m.metalness > 0.5 && m.opacity === 1 && !m.transparent) {
+        const lum = m.color.r * 0.299 + m.color.g * 0.587 + m.color.b * 0.114;
+        if (lum < 0.7 || lum > 0.3) {
+          m.color.copy(newColor);
+        }
+      }
     }
   });
 }
 
 function updateGlassOpacity() {
   if (!mg) return;
-  const configs = { glass_frosted:0.72, glass_5mm:0.12, glass_6mm:0.14, glass_8mm_tempered:0.17, glass_10mm_tempered:0.20, glass_double:0.22, glass_smart:0.55 };
-  const op = configs[glassKey]||0.14;
-  mg.traverse(c=>{
-    if (c.isMesh&&c.material&&c.material.transparent&&c.material.opacity<0.85) c.material.opacity=op;
+  const opacities = { glass_frosted: 0.7, glass_5mm: 0.14, glass_6mm: 0.14, glass_8mm_tempered: 0.16, glass_10mm_tempered: 0.18, glass_double: 0.2, glass_smart: 0.45 };
+  const op = opacities[glassKey] || 0.15;
+  mg.traverse(c => {
+    if (c.isMesh && c.material && c.material.transparent && c.material.opacity < 0.9) {
+      c.material.opacity = op;
+    }
   });
 }
 
 function switchModel(type) {
-  currentModel=type;
+  currentModel = type;
   if (threeReady) buildModel(type);
   updatePrice();
 }
 
 function switchTabBtn(type) {
-  const map = {door:0,window:1,sliding:2,facade:3,shower:4};
-  document.querySelectorAll('.cv-tab').forEach((t,i)=>t.classList.toggle('active',i===(map[type]??0)));
+  const map = { door: 0, window: 1, sliding: 2, facade: 3, shower: 4 };
+  document.querySelectorAll('.cv-tab').forEach((t, i) => t.classList.toggle('active', i === (map[type] ?? 0)));
 }
 
 /* ===================== HERO PARTICLES ===================== */
@@ -1486,27 +1372,37 @@ function initHero() {
   const c = document.getElementById('hero-canvas-bg');
   if (!c) return;
   const ctx = c.getContext('2d');
-  const resize=()=>{ c.width=window.innerWidth; c.height=window.innerHeight; };
-  resize(); window.addEventListener('resize',resize);
-  const pts = Array.from({length:65},()=>({
-    x:Math.random(),y:Math.random(),
-    vx:(Math.random()-.5)*0.0003,vy:(Math.random()-.5)*0.0003,
-    r:Math.random()*1.5+0.4,alpha:Math.random()*0.5+0.2
+  const resize = () => { c.width = window.innerWidth; c.height = window.innerHeight; };
+  resize(); window.addEventListener('resize', resize);
+
+  const pts = Array.from({ length: 65 }, () => ({
+    x: Math.random(), y: Math.random(),
+    vx: (Math.random() - 0.5) * 0.0003, vy: (Math.random() - 0.5) * 0.0003,
+    r: Math.random() * 1.5 + 0.4, alpha: Math.random() * 0.5 + 0.2
   }));
+
   function draw() {
-    ctx.clearRect(0,0,c.width,c.height);
-    pts.forEach(p=>{
-      p.x=(p.x+p.vx+1)%1; p.y=(p.y+p.vy+1)%1;
-      ctx.beginPath(); ctx.arc(p.x*c.width,p.y*c.height,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(184,146,42,${p.alpha})`; ctx.fill();
+    ctx.clearRect(0, 0, c.width, c.height);
+    pts.forEach(p => {
+      p.x = (p.x + p.vx + 1) % 1; p.y = (p.y + p.vy + 1) % 1;
+      ctx.beginPath();
+      ctx.arc(p.x * c.width, p.y * c.height, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(184,146,42,${p.alpha})`;
+      ctx.fill();
     });
-    for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++) {
-      const dx=(pts[i].x-pts[j].x)*c.width, dy=(pts[i].y-pts[j].y)*c.height;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if (dist<120) {
-        ctx.beginPath(); ctx.moveTo(pts[i].x*c.width,pts[i].y*c.height);
-        ctx.lineTo(pts[j].x*c.width,pts[j].y*c.height);
-        ctx.strokeStyle=`rgba(184,146,42,${0.06*(1-dist/120)})`; ctx.lineWidth=0.5; ctx.stroke();
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const dx = (pts[i].x - pts[j].x) * c.width;
+        const dy = (pts[i].y - pts[j].y) * c.height;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x * c.width, pts[i].y * c.height);
+          ctx.lineTo(pts[j].x * c.width, pts[j].y * c.height);
+          ctx.strokeStyle = `rgba(184,146,42,${0.06 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
       }
     }
     requestAnimationFrame(draw);
@@ -1514,106 +1410,156 @@ function initHero() {
   draw();
 }
 
-/* ===================== WHATSAPP ===================== */
+/* ===================== WHATSAPP & ORDER ===================== */
 function buildOrderMsg() {
-  const h=document.getElementById('ih')?.value||'--';
-  const w=document.getElementById('iw')?.value||'--';
-  const price=document.getElementById('pm')?.textContent||'--';
-  const modelNames={door:'باب',window:'شباك',sliding:'شباك انزلاق',facade:'واجهة',shower:'كبينة شاور'};
-  const mt=modelNames[currentModel]||'غير محدد';
-  const angEl=document.getElementById('sang'); const opEl=document.getElementById('sopen');
-  const ang=angEl?.options[angEl.selectedIndex]?.text||'';
-  const op=opEl?.options[opEl.selectedIndex]?.text||'';
-  const gl=document.querySelector('#glass-opts .sel')?.textContent||'';
-  const finish=document.querySelector('#finish-opts .sel')?.textContent||'';
-  const colorName=document.getElementById('swnm')?.textContent||'';
+  const h = document.getElementById('ih')?.value || '--';
+  const w = document.getElementById('iw')?.value || '--';
+  const price = document.getElementById('pm')?.textContent || '--';
+  const modelNames = { door: 'باب', window: 'شباك', sliding: 'شباك انزلاق', facade: 'واجهة', shower: 'كبينة شاور' };
+  const mt = modelNames[currentModel] || 'غير محدد';
+  const angEl = document.getElementById('sang');
+  const opEl = document.getElementById('sopen');
+  const ang = angEl?.options[angEl.selectedIndex]?.text || '';
+  const op = opEl?.options[opEl.selectedIndex]?.text || '';
+  const gl = document.querySelector('#glass-opts .sel')?.textContent || '';
+  const finish = document.querySelector('#finish-opts .sel')?.textContent || '';
+  const colorName = document.getElementById('swnm')?.textContent || '';
+
   return encodeURIComponent(
-    `مرحباً كمال الباشا 👋\n\n📐 طلب تصميم جديد:\n• المنتج: ${mt}\n• الأبعاد: ${h}م × ${w}م\n`+
-    `• نوع الفتح: ${op}\n• زاوية الركن: ${ang}\n• نوع الزجاج: ${gl}\n• التشطيب: ${finish}\n`+
-    `• اللون: ${colorName}\n• جوازر أفقية: ${divs.h} | رأسية: ${divs.v}\n💰 السعر التقريبي: ${price} ج\n\nأرجو التواصل لتأكيد الطلب 🙏`
+    `مرحباً كمال الباشا 👋\n\n` +
+    `📐 طلب تصميم جديد:\n` +
+    `• المنتج: ${mt}\n` +
+    `• الأبعاد: ${h}م × ${w}م\n` +
+    `• نوع الفتح: ${op}\n` +
+    `• زاوية الركن: ${ang}\n` +
+    `• نوع الزجاج: ${gl}\n` +
+    `• التشطيب: ${finish}\n` +
+    `• اللون: ${colorName}\n` +
+    `• جوازر أفقية: ${divs.h} | رأسية: ${divs.v}\n` +
+    `💰 السعر التقريبي: ${price} ج\n\n` +
+    `أرجو التواصل لتأكيد الطلب 🙏`
   );
 }
 
 function doWA() {
-  const ph=SD.whatsapp||'201000000000';
-  window.open(`https://wa.me/${ph}?text=${buildOrderMsg()}`,'_blank');
-  if (APPS_SCRIPT_URL&&!APPS_SCRIPT_URL.includes('YOUR_APPS_SCRIPT')) saveOrderToSheet();
+  const ph = SD.whatsapp || '201000000000';
+  window.open(`https://wa.me/${ph}?text=${buildOrderMsg()}`, '_blank');
+  // Save order to sheet if URL configured
+  if (APPS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    saveOrderToSheet();
+  }
 }
+
 function doOrder() { doWA(); }
 
 function saveOrderToSheet() {
-  const h=document.getElementById('ih')?.value||'';
-  const w=document.getElementById('iw')?.value||'';
+  const h = document.getElementById('ih')?.value || '';
+  const w = document.getElementById('iw')?.value || '';
   fetch(APPS_SCRIPT_URL, {
-    method:'POST', headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({ action:'order', data:{
-      model:currentModel, height:h, width:w, area:+(h*w).toFixed(2),
-      glass:document.querySelector('#glass-opts .sel')?.textContent,
-      finish:document.querySelector('#finish-opts .sel')?.textContent,
-      divH:divs.h, divV:divs.v, angle:document.getElementById('sang')?.value,
-      openType:document.getElementById('sopen')?.value,
-      color:document.getElementById('swnm')?.textContent,
-      price:document.getElementById('pm')?.textContent, source:'website'
-    }})
-  }).catch(()=>{});
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      action: 'order',
+      data: {
+        model: currentModel,
+        height: h, width: w, area: +(h * w).toFixed(2),
+        glass: document.querySelector('#glass-opts .sel')?.textContent,
+        finish: document.querySelector('#finish-opts .sel')?.textContent,
+        divH: divs.h, divV: divs.v,
+        angle: document.getElementById('sang')?.value,
+        openType: document.getElementById('sopen')?.value,
+        color: document.getElementById('swnm')?.textContent,
+        price: document.getElementById('pm')?.textContent,
+        source: 'website'
+      }
+    })
+  }).catch(() => {});
 }
 
-/* ===================== NAV / MOBILE ===================== */
+/* ===================== MOBILE MENU ===================== */
 function toggleMob() {
-  const m=document.getElementById('mob-menu');
-  m.classList.toggle('open'); m.style.display=m.classList.contains('open')?'flex':'none';
+  const menu = document.getElementById('mob-menu');
+  menu.classList.toggle('open');
+  menu.style.display = menu.classList.contains('open') ? 'flex' : 'none';
 }
 function closeMob() {
-  const m=document.getElementById('mob-menu'); m.classList.remove('open'); m.style.display='none';
+  const menu = document.getElementById('mob-menu');
+  menu.classList.remove('open');
+  menu.style.display = 'none';
 }
 
+/* ===================== TOAST ===================== */
 let toastTimer;
 function toast(msg) {
-  const e=document.getElementById('toast'); e.textContent=msg; e.classList.add('show');
-  clearTimeout(toastTimer); toastTimer=setTimeout(()=>e.classList.remove('show'),3000);
+  const e = document.getElementById('toast');
+  e.textContent = msg;
+  e.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => e.classList.remove('show'), 3000);
 }
 
+/* ===================== REVEAL ON SCROLL ===================== */
 function initReveal() {
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(x=>{ if(x.isIntersecting){x.target.classList.add('in');obs.unobserve(x.target);} });
-  },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(x => {
+      if (x.isIntersecting) { x.target.classList.add('in'); obs.unobserve(x.target); }
+    });
+  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rev').forEach(el => obs.observe(el));
 }
 
+/* ===================== NAV ===================== */
 function initNav() {
-  window.addEventListener('scroll',()=>{
-    document.getElementById('nav').classList.toggle('solid',scrollY>60);
-    const st=document.getElementById('scrolltop');
-    if(st) st.classList.toggle('vis',scrollY>400);
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    nav.classList.toggle('solid', scrollY > 60);
+    const st = document.getElementById('scrolltop');
+    if (st) st.classList.toggle('vis', scrollY > 400);
   });
 }
 
+/* ===================== LOADER ===================== */
 function runLoader() {
-  const fill=document.getElementById('lf'), pct=document.getElementById('ld-pct');
-  let p=0;
-  const iv=setInterval(()=>{
-    p=Math.min(p+Math.random()*14+4,100);
-    fill.style.width=p+'%';
-    if(pct) pct.textContent=Math.round(p)+'%';
-    if(p>=100){ clearInterval(iv); setTimeout(()=>document.getElementById('loader').classList.add('out'),350); }
-  },60);
+  const fill = document.getElementById('lf');
+  const pct = document.getElementById('ld-pct');
+  let p = 0;
+  const iv = setInterval(() => {
+    p = Math.min(p + Math.random() * 14 + 4, 100);
+    fill.style.width = p + '%';
+    if (pct) pct.textContent = Math.round(p) + '%';
+    if (p >= 100) {
+      clearInterval(iv);
+      setTimeout(() => document.getElementById('loader').classList.add('out'), 350);
+    }
+  }, 60);
 }
 
 /* ===================== INIT ===================== */
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded', () => {
   runLoader();
   initHero();
   initTicker();
   loadData();
   initReveal();
   initNav();
-  setTimeout(()=>{ init3D(); updatePrice(); }, 650);
-  const ds=document.getElementById('designer');
-  if(ds){
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting&&!threeReady) init3D(); });
-    },{threshold:0.1});
-    obs.observe(ds);
+
+  // Init 3D after a short delay to ensure DOM is ready and container has dimensions
+  setTimeout(() => {
+    init3D();
+    updatePrice();
+  }, 600);
+
+  // Reinit 3D when section becomes visible (for lazy-loaded pages)
+  const designerSection = document.getElementById('designer');
+  if (designerSection) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !threeReady) {
+          init3D();
+        }
+      });
+    }, { threshold: 0.1 });
+    obs.observe(designerSection);
   }
 });
 </script>
