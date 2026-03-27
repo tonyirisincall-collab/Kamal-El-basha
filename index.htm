@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Shower Configurator | صمم كابينتك بالفخامة التي تستحقها</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background-color: #0a0a0a; color: white; overflow-x: hidden; }
+        .glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; }
+        .gold-gradient { background: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        #canvas-container { height: 500px; width: 100%; cursor: grab; }
+        .option-card:hover { border-color: #bf953f; transform: translateY(-5px); transition: all 0.3s; }
+        .loader { border: 3px solid #f3f3f3; border-radius: 50%; border-top: 3px solid #bf953f; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <header class="p-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="text-3xl font-bold gold-gradient tracking-tighter">SHOWER PLUS+</div>
+        <div class="text-sm border border-yellow-700/50 px-4 py-2 rounded-full bg-yellow-900/10">تجربة تصميم 3D تفاعلية</div>
+    </header>
+
+    <main class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
+        
+        <div class="sticky top-6">
+            <div class="glass-card p-4 relative overflow-hidden">
+                <div id="canvas-container"></div>
+                <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                    <div>
+                        <p class="text-gray-400 text-sm">إجمالي السعر التقديري</p>
+                        <h2 id="total-price" class="text-4xl font-bold text-white">0 <span class="text-lg">EGP</span></h2>
+                    </div>
+                    <button onclick="document.getElementById('order-form').scrollIntoView({behavior:'smooth'})" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-yellow-500 transition">اطلب الآن</button>
+                </div>
+            </div>
+            <div class="mt-4 flex gap-2 overflow-x-auto pb-2" id="categories-nav">
+                </div>
+        </div>
+
+        <div class="space-y-8">
+            <section>
+                <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center text-sm">1</span>
+                    اختر المقاسات (سم)
+                </h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-4">
+                        <label class="block text-xs text-gray-400 mb-1">العرض</label>
+                        <input type="number" id="width-input" value="100" class="bg-transparent w-full text-xl outline-none" oninput="update3D()">
+                    </div>
+                    <div class="glass-card p-4">
+                        <label class="block text-xs text-gray-400 mb-1">الارتفاع</label>
+                        <input type="number" id="height-input" value="200" class="bg-transparent w-full text-xl outline-none" oninput="update3D()">
+                    </div>
+                </div>
+            </section>
+
+            <div id="dynamic-content" class="space-y-8">
+                <div class="flex justify-center py-10"><div class="loader"></div></div>
+                </div>
+
+            <section id="order-form" class="glass-card p-8 space-y-4 border-yellow-600/30 bg-yellow-600/5">
+                <h3 class="text-2xl font-bold gold-gradient">تأكيد الطلب</h3>
+                <input type="text" id="cust-name" placeholder="الاسم الكامل" class="w-full p-4 glass-card bg-transparent outline-none focus:border-yellow-600">
+                <input type="tel" id="cust-phone" placeholder="رقم الهاتف" class="w-full p-4 glass-card bg-transparent outline-none focus:border-yellow-600">
+                <button onclick="submitOrder()" id="submit-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-yellow-600 to-yellow-400 text-black font-black text-lg shadow-xl shadow-yellow-900/20 uppercase">إرسال الطلب للمصنع</button>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const API_URL = 'https://script.google.com/macros/s/AKfycbzbQQMHp29-8RWSkPJOzcGi5P2sgnNWpXY0iDDibYE8437qxmElgpaTrocUSWS_XjjKag/exec';
+        let sheetData = {};
+        let selectedOptions = { glass: null, accessories: [] };
+
+        // --- 1. Three.js 3D Setup ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        const container = document.getElementById('canvas-container');
+        
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // Glass Object
+        const geometry = new THREE.BoxGeometry(1, 2, 0.05);
+        const material = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, metalness: 0, roughness: 0.05, transmission: 0.9, thickness: 0.5, transparent: true, opacity: 0.4
+        });
+        const showerDoor = new THREE.Mesh(geometry, material);
+        scene.add(showerDoor);
+
+        // Frame
+        const frameGeom = new THREE.BoxGeometry(1.05, 2.05, 0.02);
+        const frameMat = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.8, roughness: 0.2 });
+        const frame = new THREE.Mesh(frameGeom, frameMat);
+        frame.position.z = -0.03;
+        scene.add(frame);
+
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(5, 5, 5);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+
+        camera.position.z = 4;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            showerDoor.rotation.y += 0.005;
+            frame.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        function update3D() {
+            const w = document.getElementById('width-input').value / 100;
+            const h = document.getElementById('height-input').value / 100;
+            gsap.to(showerDoor.scale, { x: w, y: h, duration: 0.5 });
+            gsap.to(frame.scale, { x: w, y: h, duration: 0.5 });
+            calculateTotal();
+        }
+
+        // --- 2. Fetch Data from Google Sheets ---
+        async function fetchData() {
+            try {
+                const response = await fetch(API_URL);
+                sheetData = await response.json();
+                renderOptions();
+            } catch (error) {
+                console.error("Error loading data:", error);
+                document.getElementById('dynamic-content').innerHTML = "<p class='text-red-500'>عذراً، فشل تحميل البيانات. تأكد من إعدادات الـ API.</p>";
+            }
+        }
+
+        function renderOptions() {
+            const container = document.getElementById('dynamic-content');
+            container.innerHTML = '';
+            
+            Object.keys(sheetData).forEach((cat, index) => {
+                let html = `
+                    <section>
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center text-sm">${index + 2}</span>
+                            اختر من ${cat}
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                `;
+
+                sheetData[cat].forEach(item => {
+                    const hasDiscount = item.discount && item.discount !== "0%";
+                    html += `
+                        <div class="option-card glass-card p-4 cursor-pointer relative" onclick="selectItem('${cat}', '${item.name}', ${item.finalPrice}, this)">
+                            <img src="${item.imageUrl}" class="w-full h-32 object-cover rounded-lg mb-3 shadow-lg">
+                            <h4 class="font-bold">${item.name}</h4>
+                            <p class="text-xs text-gray-400 mb-2">${item.description}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-yellow-500 font-bold">${item.finalPrice} EGP</span>
+                                ${hasDiscount ? `<span class="text-[10px] bg-red-600 px-2 py-1 rounded text-white">خصم ${item.discount}</span>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `</div></section>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        function selectItem(cat, name, price, el) {
+            // Remove selection from others in same category
+            el.parentElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('border-yellow-600', 'bg-yellow-600/10'));
+            el.classList.add('border-yellow-600', 'bg-yellow-600/10');
+            
+            if(cat === "زجاج") {
+                selectedOptions.glass = { name, price };
+                // Change 3D Material color based on name (simple logic)
+                if(name.includes("مصنفر")) showerDoor.material.opacity = 0.8;
+                else showerDoor.material.opacity = 0.4;
+            } else {
+                selectedOptions.accessories = [{ name, price }]; // simplified
+            }
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const w = document.getElementById('width-input').value / 100;
+            const h = document.getElementById('height-input').value / 100;
+            const area = w * h;
+            
+            let total = 0;
+            if(selectedOptions.glass) total += (selectedOptions.glass.price * area);
+            selectedOptions.accessories.forEach(acc => total += acc.price);
+            
+            document.getElementById('total-price').innerText = Math.round(total).toLocaleString();
+        }
+
+        async function submitOrder() {
+            const btn = document.getElementById('submit-btn');
+            const name = document.getElementById('cust-name').value;
+            const phone = document.getElementById('cust-phone').value;
+
+            if(!name || !phone) return alert("يرجى إدخال الاسم ورقم الهاتف");
+
+            btn.innerText = "جاري الإرسال...";
+            btn.disabled = true;
+
+            const order = {
+                name,
+                phone,
+                shape: "3D Custom Cabinet",
+                width: document.getElementById('width-input').value,
+                height: document.getElementById('height-input').value,
+                glassType: selectedOptions.glass?.name || 'غير محدد',
+                accessories: selectedOptions.accessories.map(a => a.name).join(', '),
+                totalPrice: document.getElementById('total-price').innerText
+            };
+
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Necessary for Google Script Post
+                    body: JSON.stringify(order)
+                });
+                alert("تم استلام طلبك بنجاح! سنتواصل معك قريباً.");
+                btn.innerText = "تم الإرسال بنجاح";
+            } catch (e) {
+                alert("حدث خطأ، يرجى المحاولة لاحقاً");
+                btn.disabled = false;
+                btn.innerText = "إرسال الطلب";
+            }
+        }
+
+        window.onload = fetchData;
+    </script>
+</body>
+</html>
